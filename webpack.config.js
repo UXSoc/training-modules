@@ -23,12 +23,10 @@ module.exports = {
         stats: {
             hash: false,
             version: false,
-            timings: false,
             assets: false,
             chunks: false,
             modules: false,
             source: false,
-            warnings: false,
             publicPath: false
         }
     },
