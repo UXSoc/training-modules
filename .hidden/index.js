@@ -1,1 +1,1 @@
-console.log("Reload loaded");
+console.log("Scripts loaded");

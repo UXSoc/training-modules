@@ -43,6 +43,10 @@ module.exports = {
             filename: 'index.html',
             scriptSrc: 'script.js'
         }),
-        new webpack.HotModuleReplacementPlugin()
+        new webpack.HotModuleReplacementPlugin(),
+        new webpack.ProvidePlugin({
+            $: 'jquery',
+            jQuery: 'jquery'
+        })
     ]
 };
