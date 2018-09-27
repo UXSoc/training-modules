@@ -1,6 +1,8 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
+var HtmlWebpackInsertAtBodyEndPlugin = require('html-webpack-insert-at-body-end');
+
 
 module.exports = {
     mode: 'development',
@@ -21,10 +23,13 @@ module.exports = {
     },
     plugins: [
         new HtmlWebpackPlugin({
-            inject: false,
+            inject: true,
             template: 'index.html',
-            filename: 'index.html'
+            filename: 'index.html',
         }),
+        new HtmlWebpackInsertAtBodyEndPlugin({
+            filename: 'index.html', scriptSrc: 'script.js'}
+        ),
         new webpack.HotModuleReplacementPlugin()
     ]
 };
