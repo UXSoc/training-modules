@@ -19,7 +19,18 @@ module.exports = {
         open: true,
         hot: true,
         watchContentBase: true,
-        hotOnly: true
+        hotOnly: true,
+        stats: {
+            hash: false,
+            version: false,
+            timings: false,
+            assets: false,
+            chunks: false,
+            modules: false,
+            source: false,
+            warnings: false,
+            publicPath: false
+        }
     },
     plugins: [
         new HtmlWebpackPlugin({
