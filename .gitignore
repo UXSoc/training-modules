@@ -13,3 +13,6 @@ node_modules/
 
 # prevents compiled from being added
 .hidden/public/*
+
+# Webstorm
+.idea
