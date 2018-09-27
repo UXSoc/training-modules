@@ -4,7 +4,8 @@
   "description": "A tool to learn the basics of webdev in an integrated enviroment",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server"
+    "start": "webpack-dev-server",
+    "test": "webpack"
   },
   "repository": {
     "type": "git",
