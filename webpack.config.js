@@ -3,24 +3,25 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
     mode: 'development',
-    entry: './.hidden/index.js',
+    entry: {
+        script: './.hidden/index.js'
+    },
     output: {
         filename: 'script.js',
         path: path.resolve(__dirname, './.hidden/public')
     },
     devServer: {
-        contentBase: path.join(__dirname, './.hidden/public'),
-        compress: false,
+        contentBase: path.join(__dirname, './index.html'),
         port: 4567,
         open: true,
-        hot: true
+        hot: true,
+        watchContentBase: true
     },
     plugins: [
         new HtmlWebpackPlugin({
             inject: false,
-            hash: true,
             template: 'index.html',
             filename: 'index.html'
-        })
+        }),
     ]
 };
