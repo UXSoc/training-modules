@@ -1,0 +1,19 @@
+{
+  "name": "learn-webdev",
+  "version": "1.0.0",
+  "description": "A tool to learn the basics of webdev in an integrated enviroment",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/UXSoc/learn-webdev.git"
+  },
+  "author": "Jonathan Burns",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/UXSoc/learn-webdev/issues"
+  },
+  "homepage": "https://github.com/UXSoc/learn-webdev#readme"
+}
