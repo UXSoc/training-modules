@@ -1,4 +1,5 @@
 const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
     mode: 'development',
@@ -11,6 +12,15 @@ module.exports = {
         contentBase: path.join(__dirname, './.hidden/public'),
         compress: false,
         port: 4567,
-        open: true
-    }
+        open: true,
+        hot: true
+    },
+    plugins: [
+        new HtmlWebpackPlugin({
+            inject: false,
+            hash: true,
+            template: 'index.html',
+            filename: 'index.html'
+        })
+    ]
 };
