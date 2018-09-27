@@ -27,6 +27,10 @@ module.exports = {
             modules: false,
             source: false,
             publicPath: false
+        },
+        before: function(app) {
+            var interact = require('./.hidden/interact.js');
+            interact.run(app);
         }
     },
     plugins: [
