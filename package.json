@@ -2,7 +2,6 @@
   "name": "learn-webdev",
   "version": "1.0.0",
   "description": "A tool to learn the basics of webdev in an integrated enviroment",
-  "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server",
     "test": "webpack"
