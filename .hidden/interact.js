@@ -1,10 +1,16 @@
 var colors = require('colors');
-console.log(__dirname);
 var config = require('./config.json');
+
+var uniqueRandomArray = require('unique-random-array');
+var rand_color = uniqueRandomArray(config.colors);
 
 function special_requests(app) {
   app.get('/color', function(req, res) {
-     res.json({ color: '#00FFFF' });
+    var color = rand_color();
+     var output = {
+       color
+     };
+     res.json(output);
   });
 }
 
