@@ -13,7 +13,10 @@ module.exports = {
         path: path.resolve(__dirname, './.hidden/public')
     },
     devServer: {
-        contentBase: path.join(__dirname, './index.html'),
+        contentBase: [
+            path.join(__dirname, ''),
+            path.join(__dirname, '.hidden/public')
+        ],
         port: 4567,
         open: true,
         hot: true,

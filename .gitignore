@@ -12,7 +12,7 @@ node_modules/
 .env
 
 # prevents compiled from being added
-.hidden/public/*
+.hidden/public/*.js
 
 # Webstorm
 .idea

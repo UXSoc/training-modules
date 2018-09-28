@@ -7,5 +7,4 @@ module.exports = {
            res.json({ custom: 'response' });
         });
     }
-
 };
