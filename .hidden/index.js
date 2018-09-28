@@ -8,10 +8,10 @@ $('script').each(function (index, current) {
        $.get( "./.hidden/public/ui.html", function(data) {
            $(data).insertAfter(current);
 
-           // See colors at https://coolors.co/fcdde0-d7e3eb-f1ffeb-dcfff1-fbdaff
+           // See colors at https://coolors.co/fcdde0-d7e3eb-f1ffeb-dcfff1-ffe6d8
            $.get( "/color", function(color_data) {
-               // See colors at https://coolors.co/fcdde0-d7e3eb-f1ffeb-dcfff1-fbdaff
                $('#injected').css('background-color', color_data.color);
+               $('#emoji').text(color_data.emoji);
            })
       });
    }
