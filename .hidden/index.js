@@ -9,8 +9,10 @@ $('script').each(function (index, current) {
            $(data).insertAfter(current);
 
            // See colors at https://coolors.co/fcdde0-d7e3eb-f1ffeb-dcfff1-fbdaff
-           $('#injected').css('background-color', 'red');
-       });
+           $.get( "/color", function(color_data) {
+               // See colors at https://coolors.co/fcdde0-d7e3eb-f1ffeb-dcfff1-fbdaff
+               $('#injected').css('background-color', color_data.color);
+           })
+      });
    }
 });
-
