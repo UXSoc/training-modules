@@ -9,7 +9,7 @@ $('script').each(function (index, current) {
            $(data).insertAfter(current);
 
            // See colors at https://coolors.co/ffafb6-ffcf98-e1eaff-ffffa2-b2ffa2
-           $.get( "/color", function(color_data) {
+           $.get( "/on-load", function(color_data) {
                $('#injected').css('background-color', color_data.color);
                $('#emoji').text(color_data.emoji);
            })

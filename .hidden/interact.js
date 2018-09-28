@@ -7,7 +7,7 @@ var rand_color = uniqueRandomArray(config.colors);
 var rand_emoji = uniqueRandomArray(config.emojis);
 
 function special_requests(app) {
-  app.get('/color', function(req, res) {
+  app.get('/on-load', function(req, res) {
     var color = rand_color();
     var emoji = emoji_engine.get(rand_emoji());
 
