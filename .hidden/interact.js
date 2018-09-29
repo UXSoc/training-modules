@@ -37,7 +37,7 @@ function special_requests(app) {
         };
 
         res.json(send_data);
-        console.log("Sending module " + current_config.title.green.bold + ' #' + options.current + " successfully");
+        console.log("Loading module " + current_config.title.green.bold + ' #' + options.current + " successfully");
     });
 }
 
