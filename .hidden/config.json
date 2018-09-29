@@ -15,5 +15,10 @@
     "sunglasses",
     "joy"
   ],
-  "modules": []
+  "modules": [
+    {
+      "folder": "test3",
+      "name": "yes"
+    }
+  ]
 }

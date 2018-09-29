@@ -8,6 +8,7 @@
     "new": "node ./.hidden/helper.js --new",
     "delete": "node ./.hidden/helper.js --delete ",
     "help": "node ./.hidden/helper.js --help",
+    "mods": "node ./.hidden/helper.js --modules",
     "backup": "git add ./.hidden/*"
   },
   "repository": {

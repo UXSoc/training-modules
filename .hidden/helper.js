@@ -16,23 +16,30 @@ var rmdir = require('rmdir');
 program
     .option('-n, --new [type]', 'Makes a new modules the the [folder name] given')
     .option('-d, --delete [type]', 'Deletes a modules with its [number] given')
+    .option('-m, --modules', 'Print all modules to the console')
     .parse(process.argv);
 
 
 // flag_name: string - name printed on error
 // output: var - the output of the commander ie program.new
 // when_full: function - called when a parameter is succesfully passed to the program through this command
+/////////   Only used for flags with input
 function if_flag_then(flag_name, output, when_full) {
   if (output) {
     if (typeof output === "boolean") {
       console.log("Error:".red.bold + " no value included for command: " + flag_name.bold);
       console.log("Run this command again with syntax ".dim + "npm run new 'folder_name'");
     } else {
-      when_full(process.new);
+      when_full(output);
     }
   }
 }
 
+function if_flag(flag_name, output, when_called) {
+    if (output) {
+            when_called(output);
+    }
+}
 if_flag_then("new", program.new, function() {
     prompt.start();
     prompt.message = "Prompt".bold;
@@ -49,7 +56,7 @@ if_flag_then("new", program.new, function() {
             console.log("Error ".red.bold + err);
         }
 
-        copyfiles(['./.hidden/modules/index.html', './.hidden/modules/' +  program.new], {up: true}, function (err) {
+        copyfiles(['./.hidden/modules/index.html', './.hidden/modules/save.html','./.hidden/modules/' +  program.new], {up: true}, function (err) {
             if (err) {
                 console.log("Error, copying files failed".red.bold);
                 console.log(err);
@@ -60,7 +67,10 @@ if_flag_then("new", program.new, function() {
             writeJson.sync('./.hidden/modules/' + program.new +'/template.json', module_options);
 
             const module_num = options.modules.length + 1;
-            options.modules.push(program.new);
+            options.modules.push({
+                "folder": program.new,
+                "name": result.name
+            });
             writeJson.sync('./.hidden/config.json', options);
 
             // Note: module num can't be colored because it is const and immutable
@@ -98,14 +108,15 @@ function check_valid_mod_num(num) {
 
 if_flag_then("delete", program.delete, function () {
     if (check_valid_mod_num(program.delete)) {
-        console.log("Deleting Module: " + program.delete.bold + " in folder " + options.modules[program.delete - 1]);
+        console.log("Deleting Module: " + program.delete.bold + " in folder "
+                    + options.modules[program.delete - 1].folder.bold + " called '" + options.modules[program.delete - 1].name.bold+ "'");
 
         prompt.message = "Prompt".bold;
         prompt.start();
 
         prompt.get({
             properties: {
-                name: {
+                responce: {
                     description: ("Are you sure? (yes/no): ").blue.bold
                 }
             }
@@ -115,12 +126,12 @@ if_flag_then("delete", program.delete, function () {
                 console.log("Error ".red.bold + err);
             }
 
-            if (result.name !== "yes") {
+            if (result.responce !== "yes") {
                 console.log("Aborted, delete canceled".bold.yellow);
                 return;
             }
 
-            rmdir('./.hidden/modules/' + options.modules[program.delete - 1], function (err, dirs, files) {
+            rmdir('./.hidden/modules/' + options.modules[program.delete - 1].folder, function (err, dirs, files) {
                 if (err) {
                     console.log("Error: ".red + "when deleting files");
                     console.log(err);
@@ -139,3 +150,11 @@ if_flag_then("delete", program.delete, function () {
     }
 });
 
+if_flag("modules", program.modules, function () {
+    console.log("All modules: ".blue.bold);
+    console.log("[Num]\t[Name]\t[folder name]".dim);
+
+    options.modules.forEach(function (mod, i) {
+        console.log(i + 1 + '\t'+ mod.name + '\t' + mod.folder);
+    })
+});
