@@ -15,5 +15,8 @@
     "sunglasses",
     "joy"
   ],
-  "modules": []
+  "modules": [
+    "test",
+    "test2"
+  ]
 }

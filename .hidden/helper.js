@@ -81,11 +81,15 @@ if_flag_then("new", program.new, function() {
 });
 
 function check_valid_mod_num(num) {
-    if (!isNaN(num)) {
+    if (isNaN(num)) {
         return false;
     }
 
-    if (options.modules.length >= num && num >= 1) {
+    if (options.modules.length < num) {
+        return false;
+    }
+
+    if (num <= 0) {
         return false;
     }
 
@@ -93,8 +97,8 @@ function check_valid_mod_num(num) {
 }
 
 if_flag_then("delete", program.delete, function () {
-    if (check_valid_mod_num()) {
-        console.log("Deleting Module: " + program.delete.bold + " in folder " + options.modules[program.delete - 1].bold);
+    if (check_valid_mod_num(program.delete)) {
+        console.log("Deleting Module: " + program.delete.bold + " in folder " + options.modules[program.delete - 1]);
 
         prompt.message = "Prompt".bold;
         prompt.start();
@@ -130,9 +134,8 @@ if_flag_then("delete", program.delete, function () {
                 writeJson.sync('./.hidden/config.json', options);
             });
         });
-
     } else {
-        console.log("Error: ".red + "please only pass a number corresponding to the module");
+        console.log("Error (Out of Range): ".red + "please only pass a number corresponding to the module");
     }
 });
 
