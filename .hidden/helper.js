@@ -1,16 +1,22 @@
+//Needed for all
 var program = require('commander');
 const colors = require('colors');
 var options = require('./config.json');
 var module_options = require('./modules/template.json');
 
+//Needed for new
 var copyfiles = require('copyfiles');
 const { exec } = require('child_process');
 var prompt = require('prompt');
 var writeJson = require('write-json');
 
+//needed for remove
+var rmdir = require('rmdir');
+
 program
-  .option('-n, --new [type]', 'Makes a new modules the the [folder name] given')
-  .parse(process.argv);
+    .option('-n, --new [type]', 'Makes a new modules the the [folder name] given')
+    .option('-d, --delete [type]', 'Deletes a modules its [number] given')
+    .parse(process.argv);
 
 
 // flag_name: string - name printed on error
@@ -72,5 +78,61 @@ if_flag_then("new", program.new, function() {
             });
         });
     });
-
 });
+
+function check_valid_mod_num(num) {
+    if (!isNaN(num)) {
+        return false;
+    }
+
+    if (options.modules.length >= num && num >= 1) {
+        return false;
+    }
+
+    return true;
+}
+
+if_flag_then("delete", program.delete, function () {
+    if (check_valid_mod_num()) {
+        console.log("Deleting Module: " + program.delete.bold + " in folder " + options.modules[program.delete - 1].bold);
+
+        prompt.message = "Prompt".bold;
+        prompt.start();
+
+        prompt.get({
+            properties: {
+                name: {
+                    description: ("Are you sure? (yes/no): ").blue.bold
+                }
+            }
+        }, function (err, result) {
+            if (err) {
+                console.log("Error ".red.bold + "when getting prompt");
+                console.log("Error ".red.bold + err);
+            }
+
+            if (result.name !== "yes") {
+                console.log("Aborted, delete canceled".bold.yellow);
+                return;
+            }
+
+            rmdir('./.hidden/modules/' + options.modules[program.delete - 1], function (err, dirs, files) {
+                if (err) {
+                    console.log("Error: ".red + "when deleting files");
+                    console.log(err);
+                }
+
+                console.log("Deleting dir: " + dirs.join(" ").bold);
+                console.log("Deleting files: " + files.join(" \n").bold);
+
+                //delete from array too
+                options.modules.splice(options.modules, program.delete);
+                writeJson.sync('./.hidden/config.json', options);
+            });
+        });
+
+    } else {
+        console.log("Error: ".red + "please only pass a number corresponding to the module");
+    }
+});
+
