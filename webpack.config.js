@@ -6,7 +6,7 @@ const HtmlWebpackInsertAtBodyEndPlugin = require('html-webpack-insert-at-body-en
 module.exports = {
     mode: 'development',
     entry: {
-        script: './.hidden/index.js'
+        script: './.hidden/public/index.js'
     },
     output: {
         filename: 'script.js',
