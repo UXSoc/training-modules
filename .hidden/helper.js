@@ -15,7 +15,7 @@ var rmdir = require('rmdir');
 
 program
     .option('-n, --new [type]', 'Makes a new modules the the [folder name] given')
-    .option('-d, --delete [type]', 'Deletes a modules its [number] given')
+    .option('-d, --delete [type]', 'Deletes a modules with its [number] given')
     .parse(process.argv);
 
 
