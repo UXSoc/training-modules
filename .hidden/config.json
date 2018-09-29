@@ -15,5 +15,6 @@
     "sunglasses",
     "joy"
   ],
-  "current_color": 0
+  "modules": [
+  ]
 }
