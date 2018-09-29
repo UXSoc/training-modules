@@ -1,6 +1,9 @@
 var program = require('commander');
 const colors = require('colors');
 
+var copyfiles = require('copyfiles');
+const { exec } = require('child_process');
+
 program
   .option('-n, --new [type]', 'Makes a new modules the the [folder name] given')
   .parse(process.argv);
@@ -21,5 +24,22 @@ function if_flag_then(flag_name, output, when_full) {
 }
 
 if_flag_then("new", program.new, function() {
-  console.log(program.new);
+    copyfiles(['./.hidden/modules/index.html','./.hidden/modules/template.json', './.hidden/modules/' +  program.new], {up: true}, function (err) {
+        if (err) {
+            console.log("Error, copying files failed".red.bold);
+            return;
+        }
+
+        console.log("Success: ".green.bold + "new module created in folder: " + program.new.bold);
+        exec('npm run backup', (err, stdout, stderr) => {
+            if (err) {
+                console.error('Error when adding to github: '.red.bold + err);
+                return;
+            }
+            console.log(stdout);
+            console.log(stderr);
+
+            console.log("Also backed uo files when making module".dim);
+        });
+    })
 });
