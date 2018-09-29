@@ -13,12 +13,8 @@
     "sweat",
     "sob",
     "sunglasses",
-    "joy"
+    "joy",
+    "thinking_face"
   ],
-  "modules": [
-    {
-      "folder": "test3",
-      "name": "yes"
-    }
-  ]
+  "modules": []
 }
