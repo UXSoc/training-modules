@@ -12,6 +12,7 @@ This directory contains all the files needed to make everything happen behind th
 - `npm run delete [module number]` delete a module, this is by number
 -  `npm run mods` print out all modules
 - `npm run reset` resets the config file which is useful for testing
+- `npm run publish [message]` will reset the project and commit for you with the message supplied. Then just run `git push`
 
 ## Layout
 
