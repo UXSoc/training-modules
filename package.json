@@ -2,7 +2,7 @@
   "name": "learn-webdev",
   "version": "2.0.0",
   "description": "A tool to learn the basics of webdev in an integrated enviroment",
-  "main": "./.hidden/backjs/hyper-start.js",
+  "main": "hyper-start.js",
   "scripts": {
     "start": "webpack-dev-server",
     "test": "webpack",
