@@ -1,13 +1,64 @@
+<!-- Everything past here is magic -->
+<style>
+    @import url('https://fonts.googleapis.com/css?family=Open+Sans');
+
+    #injected-IV7 {
+        padding: 1rem;
+        border-radius: 300px;
+        margin-left: 2rem;
+        margin-right: 2rem;
+    }
+
+    /* IV7 is appended to prevent possible collisions */
+    #injected-IV7 > * {
+        font-family: 'Open Sans', Arial, sans-serif;
+        display: inline-block;
+        margin: 0;
+        padding-left: 2rem;
+        padding-left: 2rem;
+        font-size: 2rem;
+    }
+
+    #title-IV7 {
+        color: #000000;
+        font-weight: bold;
+        padding-right: 1rem;
+    }
+
+    #number-IV7 {
+        color: #696969;
+        font-style: italic;
+    }
+
+    #emoji-IV7 {
+        float: right;
+        padding-right: 1rem;
+    }
+
+    .link-IV7 {
+        color: #444444;
+        text-decoration: none;
+    }
+
+    .link-IV7:hover {
+        color: #000000;
+        text-decoration: underline;
+    }
+
+</style>
 <br>
 <br>
-<div id="injected">
-    <p>UI Bar</p>
-    <!-- Everything past here is magic -->
-    <a href="./home" id="home">Home</a>
-    <a href="#" id="back">Previous</a>
-    <a href="#" id="next">Next</a>
-    <a href="#" id="wipe">Wipe</a>
+<br>
+<br>
+<div id="injected-IV7">
+    <p id="number-IV7"></p>
+    <p id="title-IV7"></p>
+    <a href="./home" id="home-IV7" class="link-IV7">Home</a>
+    <a href="#" id="back-IV7" class="link-IV7">Previous</a>
+    <a href="#" id="next-IV7" class="link-IV7">Next</a>
+    <a href="#" id="wipe-IV7" class="link-IV7">Wipe</a>
 
     <!-- This is dynamically filled in-->
-    <p id="emoji"></p>
+    <p id="emoji-IV7"></p>
 </div>
+

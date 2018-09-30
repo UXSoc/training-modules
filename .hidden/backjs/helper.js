@@ -17,6 +17,7 @@ program
     .option('-n, --new [type]', 'Makes a new modules the the [folder name] given')
     .option('-d, --delete [type]', 'Deletes a modules with its [number] given')
     .option('-m, --modules', 'Print all modules to the console')
+    .option('-r, --reset', 'sets the config file back to default')
     .parse(process.argv);
 
 
@@ -157,4 +158,13 @@ if_flag("modules", program.modules, function () {
     options.modules.forEach(function (mod, i) {
         console.log(i + 1 + '\t'+ mod.name + '\t' + mod.folder);
     })
+});
+
+if_flag("reset", program.reset, function () {
+    console.log("Resetting".green + " to current: 1 and first_time: true in config");
+
+    options.current = 1;
+    options.first_time = true;
+
+    writeJson.sync('./.hidden/config.json', options);
 });

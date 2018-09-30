@@ -7,17 +7,14 @@ console.log("Scripts loaded");
 function click_call(id, request) {
     $(id).click(function() {
         $.get(request);
+        console.log(request);
     });
 }
 
 function after_inject() {
-    click_call('#next', '/next');
-    click_call('#back', '/back');
-    click_call('#wipe', '/wipe');
-    
-    $.get('/current', function (data) {
-
-    });
+    click_call('#next-IV7', '/next');
+    click_call('#back-IV7', '/back');
+    click_call('#wipe-IV7', '/wipe');
 }
 
 // Needs to check each script tag because I can't a tag throught the Webpack injector
@@ -38,9 +35,13 @@ $('script').each(function (index, current) {
            // See colors at https://coolors.co/ffafb6-ffcf98-e1eaff-ffffa2-b2ffa2
            $.get('/on-load', function(onload_data) {
                // work-around because .css wasn't working for some reason
-               $('#injected').attr('style','background-color: #'+ onload_data.color);
-               $('#emoji').text(onload_data.emoji);
+               $('#injected-IV7').attr('style','background-color: #'+ onload_data.color);
+               $('#title-IV7').text(onload_data.title);
+               $('#number-IV7').text(onload_data.number);
+               $('#emoji-IV7').text(onload_data.emoji);
            });
       });
    }
 });
+
+

@@ -1,6 +1,6 @@
 {
   "name": "learn-webdev",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "A tool to learn the basics of webdev in an integrated enviroment",
   "scripts": {
     "start": "webpack-dev-server",
@@ -9,6 +9,7 @@
     "delete": "node ./.hidden/backjs/helper.js --delete ",
     "help": "node ./.hidden/backjs/helper.js --help",
     "mods": "node ./.hidden/backjs/helper.js --modules",
+    "reset": "node ./.hidden/backjs/helper.js --reset",
     "backup": "git add ./.hidden/*"
   },
   "repository": {

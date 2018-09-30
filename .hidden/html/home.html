@@ -1,30 +1,122 @@
-<script
-        src="http://code.jquery.com/jquery-3.3.1.min.js"
-        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-        crossorigin="anonymous">
-</script>
+<!doctype html>
+<head lang="en">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <title>UX Training Modules</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Open+Sans');
 
-<a href="/" id="open-button">
-    {{? it.first_time }}
-        Let's Go
-    {{??}}
-        Resume
-    {{?}}
-</a>
+        .blue-background {
+            background-color: #008ED4;
+        }
 
-{{~it.name :value:index}}
-<a class="module-link" href="/">
-    <div class="module-number">{{=index + 1}}</div>
-    <div class="module-name">{{=value}}</div>
-</a>
-{{~}}
-<script>
-    $('.module-link').each(function (index, current) {
-        var link_data = {
-          index: index + 1
-        };
-        $(this).click(link_data, function (event) {
-            $.post("/open", event.data, function(data) {});
+        h1, h2, p, a {
+            font-family: 'Open Sans', Arial, sans-serif;
+        }
+
+        h1 {
+            font-size: 6rem;
+            font-weight: bold;
+            letter-spacing: 2px;
+            color: #000000;
+        }
+
+        h2 {
+            letter-spacing: 3px;
+            font-size: 2.5rem;
+            color: #444444;
+            padding-left: 10px;
+        }
+
+        .btn {
+            color: #ffffff;
+            font-size: 1.7rem;
+            border-bottom-color: #ffffff;
+            border-left-color: #99D2EE;
+            border-right-color: #99D2EE;
+            border-top-color: #66BBE5;
+            border-width: 1.5px;
+        }
+
+        .btn:hover {
+            color: #008ED4;
+            background-color: #ffffff;
+            border-color: #008ED4;
+
+        }
+
+        .module-number {
+            text-align: right;
+            font-style: italic;
+            color: #008ED4;
+        }
+
+        .module-name {
+            font-weight: bold;
+            color: #008ED4;
+        }
+
+        .links {
+            font-size: 2rem;
+        }
+
+        .module-link:hover {
+            background-color: #fffdef;
+            text-decoration-color: #008ED4;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="blue-background container-fluid mb-5">
+        <div class="row justify-content-center pt-5">
+            <div class="col-4">
+                <h1>UXSoc</h1>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-4">
+                <h2>Training Modules</h2>
+            </div>
+        </div>
+        <div class="row justify-content-center pt-5 pb-5 pl-3">
+            <div class="col-4">
+                <a href="/" id="open-button" class="btn">
+                    {{? it.first_time }}
+                        Let's Go
+                    {{??}}
+                        Resume
+                    {{?}}
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid mb-5 pb-5 links">
+    {{~it.name :value:index}}
+        <a class="module-link row p-4" href="/">
+            <div class="module-number col-4 links">#{{=index + 1}}</div>
+            <div class="module-name col-8 links">{{=value}}</div>
+        </a>
+    {{~}}
+    </div>
+
+
+
+    <script
+            src="http://code.jquery.com/jquery-3.3.1.min.js"
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+            crossorigin="anonymous">
+    </script>
+    <script>
+        $('.module-link').each(function (index, current) {
+            var link_data = {
+              index: index + 1
+            };
+            $(this).click(link_data, function (event) {
+                $.post("/open", event.data, function(data) {});
+            });
         });
-    });
-</script>
+    </script>
+</body>

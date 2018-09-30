@@ -60,11 +60,9 @@ function copy_from_too(source, destination) {
 
 function get_mod() {
     var current_config = get_current_json();
-    console.log(current_config.is_first);
     if (current_config.is_first) {
         copy_from_too('./.hidden/modules/' + get_current_folder() + '/index.html', './.hidden/modules/' + get_current_folder() + '/save.html');
         current_config.is_first = false;
-        console.log("done");
     }
 
     copy_from_too('./.hidden/modules/' + get_current_folder() + '/save.html', './index.html');
@@ -77,12 +75,18 @@ function special_requests(app) {
     app.use(express.urlencoded({ extended: false }));
 
     app.get('/on-load', function(req, res) {
+        var current_config = get_current_json();
+
         var color = rand_color();
         var emoji = emoji_engine.get(rand_emoji());
+        var title = current_config.title;
+        var number = "#" + options.current;
 
          var output = {
-           color,
-           emoji
+             color,
+             emoji,
+             title,
+             number
          };
          res.json(output);
 
@@ -90,7 +94,6 @@ function special_requests(app) {
         copy_from_too('./index.html', './.hidden/modules/' + get_current_folder() + '/save.html');
 
         if (options.first_time) {
-            console.log("aeda".bold);
             options.first_time = false;
             options.current = 1;
 
@@ -144,8 +147,9 @@ function special_requests(app) {
     });
 
     app.get('/wipe', function (req, res) {
-       copy_from_too( './.hidden/modules/' + get_current_folder() + '/index.html' , './.hidden/modules/' + get_current_folder() + '/save.html');
-       copy_from_too('./.hidden/modules/' + get_current_folder() + '/save.html', './index.html');
+        console.log("trying".bold);
+        copy_from_too( './.hidden/modules/' + get_current_folder() + '/index.html' , './.hidden/modules/' + get_current_folder() + '/save.html');
+        copy_from_too('./.hidden/modules/' + get_current_folder() + '/save.html', './index.html');
     });
 
     app.post('/open', function (req, res) {
@@ -153,7 +157,6 @@ function special_requests(app) {
             options.current = req.body.index;
         }
 
-        console.log("Nope".bold);
         get_mod();
         res.end('yes');
 
