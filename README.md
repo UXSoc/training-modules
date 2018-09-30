@@ -20,10 +20,12 @@ After editing the *index.html* file the webpage opened will automatically reload
 #### Want to make a module? Check out *.hidden*
 
 ### About 
-Also available to remix on glitch.com <!-- Remix Button -->
-                                      <a href="https://glitch.com/edit/#!/remix/petite-rattlesnake">
-                                        <img src="https://cdn.glitch.com/2bdfb3f8-05ef-4035-a06e-2043962a3a13%2Fremix%402x.png?1513093958726" alt="remix button" aria-label="remix" height="33">
-                                      </a>
+Also available to remix on glitch.com:
+
+<!-- Remix Button -->
+<a href="https://glitch.com/edit/#!/remix/petite-rattlesnake">
+<img src="https://cdn.glitch.com/2bdfb3f8-05ef-4035-a06e-2043962a3a13%2Fremix%402x.png?1513093958726" alt="remix button" aria-label="remix" height="33">
+</a>
 
 Made with :heart: and :sweat: by Jonathan Burns of User Experience Society 
 
