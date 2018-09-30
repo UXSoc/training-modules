@@ -71,9 +71,6 @@ function get_mod() {
         render_home();
     }
 
-    console.log(current_config.is_first);
-    console.log(options.modules[options.current - 1].not_visited);
-
     copy_from_too('./.hidden/modules/' + get_current_folder() + '/save.html', './index.html');
     writeJson('./.hidden/modules/' + get_current_folder() + '/template.json', current_config, function () {});
     writeJson('./.hidden/config.json', options, function () {});
@@ -142,7 +139,6 @@ function special_requests(app) {
     });
 
     app.get('/wipe', function (req, res) {
-        console.log("trying".bold);
         copy_from_too( './.hidden/modules/' + get_current_folder() + '/index.html' , './.hidden/modules/' + get_current_folder() + '/save.html');
         copy_from_too('./.hidden/modules/' + get_current_folder() + '/save.html', './index.html');
     });
