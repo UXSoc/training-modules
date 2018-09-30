@@ -39,3 +39,5 @@ That script gets custom urls on the server which triggers back-end events. Those
 There is also a homepage which lists all the modules, which is done through [dot.js](http://olado.github.io/doT/index.html).
 When a module is clicked on a POST (not a GET like all other requests) sends the number of the module back to the server so it know which to load.
 It also goes to the base url, */* when something is clicked. 
+
+This project comes with glitch support and uses *hyper-start.js* and *glitch-sync.js* to do so
