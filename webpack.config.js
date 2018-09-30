@@ -34,7 +34,8 @@ module.exports = {
             var interact = require('./.hidden/backjs/interact.js');
             interact.run(app);
         },
-        openPage: 'home'
+        openPage: 'home',
+        disableHostCheck: true
     },
     plugins: [
         new HtmlWebpackPlugin({
