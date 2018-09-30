@@ -5,7 +5,6 @@
   "scripts": {
     "start": "webpack-dev-server",
     "test": "webpack",
-    "precommit": "npm run reset",
     "new": "node ./.hidden/backjs/helper.js --new ",
     "delete": "node ./.hidden/backjs/helper.js --delete ",
     "help": "node ./.hidden/backjs/helper.js --help",
@@ -40,6 +39,7 @@
     "webpack-dev-server": "^3.1.9",
     "write-json": "^3.0.1"
   },
+  "precommit": ["reset"],
   "devDependencies": {
     "pre-commit": "^1.2.2"
   }
