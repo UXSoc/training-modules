@@ -1,5 +1,6 @@
 {
-  "current": 1,
+  "current": "1",
+  "first_time": false,
   "colors": [
     "FFAFB6",
     "FFCF98",
@@ -17,14 +18,5 @@
     "joy",
     "thinking_face"
   ],
-  "modules": [
-    {
-      "folder": "waa",
-      "name": "waa"
-    },
-    {
-      "folder": "waa2",
-      "name": "waa2"
-    }
-  ]
+  "modules": []
 }

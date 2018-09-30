@@ -1,6 +1,30 @@
+<script
+        src="http://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous">
+</script>
+
+<a href="/" id="open-button">
+    {{? it.first_time }}
+        Let's Go
+    {{??}}
+        Resume
+    {{?}}
+</a>
+
 {{~it.name :value:index}}
-<a href="/open">
+<a class="module-link" href="/">
     <div class="module-number">{{=index + 1}}</div>
     <div class="module-name">{{=value}}</div>
 </a>
 {{~}}
+<script>
+    $('.module-link').each(function (index, current) {
+        var link_data = {
+          index: index + 1
+        };
+        $(this).click(link_data, function (event) {
+            $.post("/open", event.data, function(data) {});
+        });
+    });
+</script>

@@ -21,8 +21,13 @@ function after_inject() {
 }
 
 // Needs to check each script tag because I can't a tag throught the Webpack injector
+
 $('script').each(function (index, current) {
    if ($(current).attr('src') == 'script.js') {
+        if (!$('body').length) {
+            $('head').after($(current));
+        }
+
        $.get('./.hidden/html/ui.html', function(data) {
            $(current).before("<!-- This html is injected when serving the page to make the UI -->");
            $(current).before("<!-- You can safely ignore everything past here -->");
@@ -32,7 +37,6 @@ $('script').each(function (index, current) {
 
            // See colors at https://coolors.co/ffafb6-ffcf98-e1eaff-ffffa2-b2ffa2
            $.get('/on-load', function(onload_data) {
-               console.log(onload_data.color);
                // work-around because .css wasn't working for some reason
                $('#injected').attr('style','background-color: #'+ onload_data.color);
                $('#emoji').text(onload_data.emoji);

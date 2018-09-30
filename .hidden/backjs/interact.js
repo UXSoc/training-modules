@@ -2,6 +2,7 @@ var colors = require('colors');
 var options = require('../config.json');
 var emoji_engine = require('node-emoji');
 var path = require('path');
+var express = require('express');
 
 var uniqueRandomArray = require('unique-random-array');
 var rand_color = uniqueRandomArray(options.colors);
@@ -11,17 +12,26 @@ var fsex = require('fs-extra');
 
 var doT =  require('dot');
 var fs = require('fs');
-var template = fs.readFileSync(path.join(__dirname + '/../html/home.html')).toString();
-var tempFn = doT.template(template);
-const modules_name = [];
-options.modules.forEach(function (data) {
-   modules_name.push(data.name);
-});
-template_data = {
-    name: modules_name
-};
-const renderHTML = tempFn(template_data);
-console.log("Success: built homepage".green.bold);
+var writeJson = require('write-json');
+
+global.home = "";
+//Works in place, only needs to be called
+function render_home() {
+    var template = fs.readFileSync(path.join(__dirname + '/../html/home.html')).toString();
+    var tempFn = doT.template(template);
+    const modules_name = [];
+    options.modules.forEach(function (data) {
+        modules_name.push(data.name);
+    });
+    template_data = {
+        name: modules_name,
+        first_time: options.first_time
+    };
+    const renderHTML = tempFn(template_data);
+    console.log("Success: built homepage".green.bold);
+    home = renderHTML;
+    console.log(options.first_time);
+}
 
 //return - string of folder name
 function get_current_folder() {
@@ -58,21 +68,36 @@ function get_mod() {
     }
 
     copy_from_too('./.hidden/modules/' + get_current_folder() + '/save.html', './index.html');
+    writeJson.sync('./.hidden/modules/' + get_current_folder() + '/template.json', current_config);
 }
 
 function special_requests(app) {
+    //These two needed for express to actually read the data
+    app.use(express.json());
+    app.use(express.urlencoded({ extended: false }));
+
     app.get('/on-load', function(req, res) {
-    var color = rand_color();
-    var emoji = emoji_engine.get(rand_emoji());
+        var color = rand_color();
+        var emoji = emoji_engine.get(rand_emoji());
 
-     var output = {
-       color,
-       emoji
-     };
-     res.json(output);
+         var output = {
+           color,
+           emoji
+         };
+         res.json(output);
 
-     //automatic saving
-    copy_from_too('./index.html', './.hidden/modules/' + get_current_folder() + '/save.html');
+         //automatic saving
+        copy_from_too('./index.html', './.hidden/modules/' + get_current_folder() + '/save.html');
+
+        if (options.first_time) {
+            console.log("aeda".bold);
+            options.first_time = false;
+            options.current = 1;
+
+            render_home();
+        }
+
+        writeJson.sync('./.hidden/config.json', options);
     });
 
     app.get('/current', function (req, res) {
@@ -85,12 +110,14 @@ function special_requests(app) {
 
         res.json(send_data);
         console.log("Loading module " + current_config.title.green.bold + ' #' + options.current + " successfully");
+
+        writeJson.sync('./.hidden/config.json', options);
     });
 
     app.get('/home', function (req, res) {
         console.log("Going home".dim);
 
-        res.send(renderHTML);
+        res.send(home);
     });
 
     app.get('/next', function(req, res) {
@@ -101,6 +128,8 @@ function special_requests(app) {
         }
 
         get_mod();
+
+        writeJson.sync('./.hidden/config.json', options);
     });
 
     app.get('/back', function (req, res) {
@@ -110,6 +139,8 @@ function special_requests(app) {
         }
 
         get_mod();
+
+        writeJson.sync('./.hidden/config.json', options);
     });
 
     app.get('/wipe', function (req, res) {
@@ -117,8 +148,16 @@ function special_requests(app) {
        copy_from_too('./.hidden/modules/' + get_current_folder() + '/save.html', './index.html');
     });
 
-    app.get('/open', function (req, res) {
-        
+    app.post('/open', function (req, res) {
+        if (req.body.index) {
+            options.current = req.body.index;
+        }
+
+        console.log("Nope".bold);
+        get_mod();
+        res.end('yes');
+
+        writeJson.sync('./.hidden/config.json', options);
     });
 }
 
@@ -126,6 +165,8 @@ module.exports = {
     run: function(app) {
         console.log("Starting Front End UI".bold + " Version: ".dim + process.env.npm_package_version.dim);
 
+        get_mod();
+        render_home();
         special_requests(app);
     }
 };
