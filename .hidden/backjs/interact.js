@@ -1,6 +1,7 @@
 var colors = require('colors');
-var options = require('./config.json');
+var options = require('../config.json');
 var emoji_engine = require('node-emoji');
+var path = require('path');
 
 var uniqueRandomArray = require('unique-random-array');
 var rand_color = uniqueRandomArray(options.colors);
@@ -13,7 +14,7 @@ function get_current_folder() {
 }
 
 function get_current_json() {
-    return require('./modules/' + get_current_folder() + '/template.json');
+    return require('../modules/' + get_current_folder() + '/template.json');
 }
 
 function special_requests(app) {
@@ -38,6 +39,11 @@ function special_requests(app) {
 
         res.json(send_data);
         console.log("Loading module " + current_config.title.green.bold + ' #' + options.current + " successfully");
+    });
+
+    app.get('/home', function (req, res) {
+        console.log("Going home".dim);
+        res.sendFile(path.join(__dirname + '/html/home.html'));
     });
 }
 

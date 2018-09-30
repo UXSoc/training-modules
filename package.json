@@ -5,10 +5,10 @@
   "scripts": {
     "start": "webpack-dev-server",
     "test": "webpack",
-    "new": "node ./.hidden/helper.js --new",
-    "delete": "node ./.hidden/helper.js --delete ",
-    "help": "node ./.hidden/helper.js --help",
-    "mods": "node ./.hidden/helper.js --modules",
+    "new": "node ./.hidden/backjs/helper.js --new ",
+    "delete": "node ./.hidden/backjs/helper.js --delete ",
+    "help": "node ./.hidden/backjs/helper.js --help",
+    "mods": "node ./.hidden/backjs/helper.js --modules",
     "backup": "git add ./.hidden/*"
   },
   "repository": {

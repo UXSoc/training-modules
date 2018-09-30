@@ -6,7 +6,7 @@ const HtmlWebpackInsertAtBodyEndPlugin = require('html-webpack-insert-at-body-en
 module.exports = {
     mode: 'development',
     entry: {
-        script: './.hidden/front.js'
+        script: './.hidden/frontjs/front.js'
     },
     output: {
         filename: 'script.js',
@@ -32,7 +32,7 @@ module.exports = {
             publicPath: false
         },
         before: function(app) {
-            var interact = require('./.hidden/interact.js');
+            var interact = require('./.hidden/backjs/interact.js');
             interact.run(app);
         }
     },

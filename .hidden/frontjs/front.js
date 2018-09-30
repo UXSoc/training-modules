@@ -16,14 +16,14 @@ function after_inject() {
     click_call('#wipe', '/wipe');
     
     $.get('/current', function (data) {
-        console.log(data);
+
     });
 }
 
 // Needs to check each script tag because I can't a tag throught the Webpack injector
 $('script').each(function (index, current) {
    if ($(current).attr('src') == 'script.js') {
-       $.get('./.hidden/ui.html', function(data) {
+       $.get('./.hidden/html/ui.html', function(data) {
            $(current).before("<!-- This html is injected when serving the page to make the UI -->");
            $(current).before("<!-- You can safely ignore everything past here -->");
            $(data).insertAfter(current);

@@ -1,8 +1,8 @@
 //Needed for all
 var program = require('commander');
 const colors = require('colors');
-var options = require('./config.json');
-var module_options = require('./modules/template.json');
+var options = require('../config.json');
+var module_options = require('../modules/template.json');
 
 //Needed for new
 var copyfiles = require('copyfiles');
