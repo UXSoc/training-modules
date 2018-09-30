@@ -18,11 +18,5 @@
     "joy",
     "thinking_face"
   ],
-  "modules": [
-    {
-      "folder": "waaa",
-      "name": "asd",
-      "not_visited": true
-    }
-  ]
+  "modules": []
 }
