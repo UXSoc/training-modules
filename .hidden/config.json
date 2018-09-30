@@ -17,5 +17,14 @@
     "joy",
     "thinking_face"
   ],
-  "modules": []
+  "modules": [
+    {
+      "folder": "waa",
+      "name": "waa"
+    },
+    {
+      "folder": "waa2",
+      "name": "waa2"
+    }
+  ]
 }

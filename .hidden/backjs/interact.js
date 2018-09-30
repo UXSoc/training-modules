@@ -7,6 +7,19 @@ var uniqueRandomArray = require('unique-random-array');
 var rand_color = uniqueRandomArray(options.colors);
 var rand_emoji = uniqueRandomArray(options.emojis);
 
+var doT =  require('dot');
+var fs = require('fs');
+var template = fs.readFileSync(path.join(__dirname + '/../html/home.html')).toString();
+var tempFn = doT.template(template);
+const modules_name = [];
+options.modules.forEach(function (data) {
+   modules_name.push(data.name);
+});
+template_data = {
+    name: modules_name
+};
+const renderHTML = tempFn(template_data);
+
 //return - string of folder name
 function get_current_folder() {
     if (options.modules.length === 0) {
@@ -52,7 +65,8 @@ function special_requests(app) {
 
     app.get('/home', function (req, res) {
         console.log("Going home".dim);
-        res.sendFile(path.join(__dirname + '/../html/home.html'));
+
+        res.send(renderHTML);
     });
 }
 
