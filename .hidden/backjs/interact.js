@@ -30,7 +30,7 @@ function render_home() {
         first_time: options.first_time,
         mods: modules_links
     };
-    
+
     const renderHTML = tempFn(template_data);
 
     console.log("Success: built homepage".green.bold);
