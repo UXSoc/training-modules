@@ -31,11 +31,12 @@ $('script').each(function (index, current) {
            after_inject();
 
            // See colors at https://coolors.co/ffafb6-ffcf98-e1eaff-ffffa2-b2ffa2
-           $.get('/on-load', function(color_data) {
-               $('#injected').css('background-color', color_data.color);
-               $('#emoji').text(color_data.emoji);
+           $.get('/on-load', function(onload_data) {
+               console.log(onload_data.color);
+               // work-around because .css wasn't working for some reason
+               $('#injected').attr('style','background-color: #'+ onload_data.color);
+               $('#emoji').text(onload_data.emoji);
            });
       });
    }
-   console.log("waa");
 });

@@ -7,6 +7,8 @@ var uniqueRandomArray = require('unique-random-array');
 var rand_color = uniqueRandomArray(options.colors);
 var rand_emoji = uniqueRandomArray(options.emojis);
 
+var fsex = require('fs-extra');
+
 var doT =  require('dot');
 var fs = require('fs');
 var template = fs.readFileSync(path.join(__dirname + '/../html/home.html')).toString();
@@ -40,6 +42,24 @@ function get_current_json() {
     return require('../modules/' + get_current_folder() + '/template.json');
 }
 
+//first file has to exist
+//TODO: add error handling
+function copy_from_too(source, destination) {
+    fsex.copySync(path.resolve(source), destination);
+}
+
+function get_mod() {
+    var current_config = get_current_json();
+    console.log(current_config.is_first);
+    if (current_config.is_first) {
+        copy_from_too('./.hidden/modules/' + get_current_folder() + '/index.html', './.hidden/modules/' + get_current_folder() + '/save.html');
+        current_config.is_first = false;
+        console.log("done");
+    }
+
+    copy_from_too('./.hidden/modules/' + get_current_folder() + '/save.html', './index.html');
+}
+
 function special_requests(app) {
     app.get('/on-load', function(req, res) {
     var color = rand_color();
@@ -50,6 +70,9 @@ function special_requests(app) {
        emoji
      };
      res.json(output);
+
+     //automatic saving
+    copy_from_too('./index.html', './.hidden/modules/' + get_current_folder() + '/save.html');
     });
 
     app.get('/current', function (req, res) {
@@ -71,7 +94,30 @@ function special_requests(app) {
     });
 
     app.get('/next', function(req, res) {
-        options.current += 1;
+        //loops all modules
+        options.current = (options.current + 1) % (options.modules.length + 1);
+        if (options.current === 0) {
+            options.current = 1;
+        }
+
+        get_mod();
+    });
+
+    app.get('/back', function (req, res) {
+        options.current = options.current - 1;
+        if (options.current === 0) {
+            options.current = options.modules.length;
+        }
+
+        get_mod();
+    });
+
+    app.get('/wipe', function (req, res) {
+       copy_from_too( './.hidden/modules/' + get_current_folder() + '/index.html' , './.hidden/modules/' + get_current_folder() + '/save.html');
+       copy_from_too('./.hidden/modules/' + get_current_folder() + '/save.html', './index.html');
+    });
+
+    app.get('/open', function (req, res) {
         
     });
 }
