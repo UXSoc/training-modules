@@ -1,10 +1,10 @@
 # Welcome To Where the **Magic** Happens
 
 This directory contains all the files needed to make everything happen behind the scenes including:
-- module data
-- ui data
-- front and back end javascript
-- helping scripts
+- Module data
+- UI data
+- Front and back end javascript
+- Helping scripts
 
 ## Commands
 
