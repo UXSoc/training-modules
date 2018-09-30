@@ -65,6 +65,11 @@ function if_flag(flag_name, output, when_called) {
     }
 }
 if_flag_then("new", program.new, function() {
+    if (fsex.existsSync('./.hidden/modules/' +  program.new)) {
+        console.log("Error: ".red.bold + "folder already exists, please we run with a different name");
+        return;
+    }
+
     prompt.start();
     prompt.message = "Prompt".bold;
 
@@ -196,6 +201,7 @@ if_flag("reset", program.reset, function () {
 
         mod.not_visited = true;
         writeJson('./.hidden/modules/' + get_current_folder() + '/template.json', current_config, function () {});
+        fsex.copySync(path.resolve('./.hidden/modules/save.html'), './.hidden/modules/' + get_current_folder() + '/save.html');
     });
 
     fsex.copySync(path.resolve('./.hidden/modules/save.html'), './index.html');

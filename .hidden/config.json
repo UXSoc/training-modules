@@ -1,6 +1,6 @@
 {
-  "current": 2,
-  "first_time": false,
+  "current": 1,
+  "first_time": true,
   "colors": [
     "FFAFB6",
     "FFCF98",
@@ -18,5 +18,11 @@
     "joy",
     "thinking_face"
   ],
-  "modules": []
+  "modules": [
+    {
+      "folder": "waaa",
+      "name": "asd",
+      "not_visited": true
+    }
+  ]
 }
