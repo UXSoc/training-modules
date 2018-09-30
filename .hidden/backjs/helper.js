@@ -195,12 +195,15 @@ if_flag("reset", program.reset, function () {
     options.current = 1;
     options.first_time = true;
 
+    fsex.closeSync(fsex.openSync('./.hidden/modules/save.html', 'w'));
+
     options.modules.forEach(function (mod) {
         var current_config = get_current_json();
         current_config.is_first = true;
 
         mod.not_visited = true;
         writeJson('./.hidden/modules/' + get_current_folder() + '/template.json', current_config, function () {});
+
         fsex.copySync(path.resolve('./.hidden/modules/save.html'), './.hidden/modules/' + get_current_folder() + '/save.html');
     });
 
