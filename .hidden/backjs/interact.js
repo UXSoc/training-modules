@@ -19,6 +19,7 @@ template_data = {
     name: modules_name
 };
 const renderHTML = tempFn(template_data);
+console.log("Success: built homepage".green.bold);
 
 //return - string of folder name
 function get_current_folder() {
@@ -67,6 +68,11 @@ function special_requests(app) {
         console.log("Going home".dim);
 
         res.send(renderHTML);
+    });
+
+    app.get('/next', function(req, res) {
+        options.current += 1;
+        
     });
 }
 
