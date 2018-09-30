@@ -157,7 +157,7 @@ function special_requests(app) {
 
 module.exports = {
     run: function(app) {
-        console.log("Starting Front End UI".bold + " Version: ".dim + process.env.npm_package_version.dim);
+        console.log("Starting Front End UI".bold + " Version: ".dim);
 
         render_home();
         special_requests(app);
