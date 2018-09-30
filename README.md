@@ -20,7 +20,7 @@ After editing the *index.html* file the webpage opened will automatically reload
 #### Want to make a module? Check out *.hidden*
 
 ### About 
-Also available to remix on glitch.com:
+Also available to remix on [Gitch](glitch.com):
 
 <!-- Remix Button -->
 <a href="https://glitch.com/edit/#!/remix/petite-rattlesnake">
