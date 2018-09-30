@@ -12,7 +12,7 @@ After editing the *index.html* file the webpage opened will automatically reload
 
 - The index.html file will save automatically for each module so you can always go back!
 - Whenever the webpage updates, the UI bar will be a different color and the emoji will change.
-- Additional html is injected to load the UI in the webpage, but don't worry it shouldn't affect you're html.
+- Additional html is injected to load the UI in the webpage, but don't worry it shouldn't affect your html.
 - Try to avoid having more than one webpage of this open at a time.
 - Have fun!
 
