@@ -9,6 +9,15 @@ var rand_emoji = uniqueRandomArray(options.emojis);
 
 //return - string of folder name
 function get_current_folder() {
+    if (options.modules.length === 0) {
+        console.log("Error: ".red.bold + "not modules found");
+        console.log("Serving default template as a result");
+        //returns the current dir, which is just '.' in unix
+        //this is not just a period
+        //when plugged into get_current_json, this allows it to get the default template path
+        return ".";
+    }
+
     var current_folder = options.modules[options.current - 1].folder;
     return current_folder;
 }
@@ -43,7 +52,7 @@ function special_requests(app) {
 
     app.get('/home', function (req, res) {
         console.log("Going home".dim);
-        res.sendFile(path.join(__dirname + '/html/home.html'));
+        res.sendFile(path.join(__dirname + '/../html/home.html'));
     });
 }
 
