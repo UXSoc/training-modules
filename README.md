@@ -10,7 +10,7 @@ After editing the *index.html* file the webpage opened will automatically reload
 
 ## Tips
 
-- The index.html file will save automatically for each module so you can always fo back!
+- The index.html file will save automatically for each module so you can always go back!
 - Whenever the webpage updates, the UI bar will be a different color and the emoji will change.
 - Additional html is injected to load the UI in the webpage, but don't worry it shouldn't affect you're html.
 - Try to avoid having more than one webpage of this open at a time.
@@ -21,3 +21,6 @@ After editing the *index.html* file the webpage opened will automatically reload
 
 ### About 
 Made with :heart: and :sweat: by Jonathan Burns of User Experience Society 
+
+# Save
+After editing modules, run `npm run backup`, then commit and push either from Webstorm or the terminal.

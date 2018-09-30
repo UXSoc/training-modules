@@ -10,7 +10,8 @@
     "help": "node ./.hidden/backjs/helper.js --help",
     "mods": "node ./.hidden/backjs/helper.js --modules",
     "reset": "node ./.hidden/backjs/helper.js --reset",
-    "backup": "git add ./.hidden/*"
+    "backup": "git add ./.hidden/*",
+    "publish": "npm run reset && npm run backup && git commit -m"
   },
   "repository": {
     "type": "git",
@@ -39,7 +40,7 @@
     "webpack-dev-server": "^3.1.9",
     "write-json": "^3.0.1"
   },
-  "precommit": ["reset"],
+  "precommit": ["test"],
   "devDependencies": {
     "pre-commit": "^1.2.2"
   }
