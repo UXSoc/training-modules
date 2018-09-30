@@ -12,9 +12,7 @@
     "mods": "node ./.hidden/backjs/helper.js --modules",
     "reset": "node ./.hidden/backjs/helper.js --reset",
     "backup": "git add ./.hidden/*",
-    "sync": "node glitch-sync.js",
-    "publish": "npm run reset && npm run backup && git commit -m",
-    "update": "git push && npm run sync"
+    "publish": "npm run reset && npm run backup && git commit -m"
   },
   "repository": {
     "type": "git",
@@ -45,10 +43,6 @@
   },
   "precommit": ["test"],
   "devDependencies": {
-    "pre-commit": "^1.2.2",
-    "sync-glitch-cli": "^2.0.1"
-  },
-  "optionalDependencies": {
-    "api-keys": "git+ssh://git@github.com/jhburns/api-keys.git"
+    "pre-commit": "^1.2.2"
   }
 }
