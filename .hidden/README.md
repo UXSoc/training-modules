@@ -11,7 +11,7 @@ This directory contains all the files needed to make everything happen behind th
 - `npm run new [folder name]` create a new module
 - `npm run delete [module number]` delete a module, this is by number
 -  `npm run mods` print out all modules
-- `npm run rest` resets the config file which is useful for testing
+- `npm run reset` resets the config file which is useful for testing
 
 ## Layout
 
