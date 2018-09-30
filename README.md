@@ -15,3 +15,9 @@ After editing the *index.html* file the webpage opened will automatically reload
 - Additional html is injected to load the UI in the webpage, but don't worry it shouldn't affect you're html.
 - Try to avoid having more than one webpage of this open at a time.
 - Have fun!
+
+---
+#### Want to make a module? Check out *.hidden*
+
+### About 
+Made with :heart: and :sweat: by Jonathan Burns of User Experience Society 

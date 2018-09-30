@@ -8,7 +8,7 @@ This directory contains all the files needed to make everything happen behind th
 
 ## Commands
 
-- `npm run new [folder name]` create a new module
+- `npm run new [folder name]` create a new module which will be available in */.hidden/modules/[folder name]* 
 - `npm run delete [module number]` delete a module, this is by number
 -  `npm run mods` print out all modules
 - `npm run reset` resets the config file which is useful for testing
