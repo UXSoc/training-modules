@@ -1,7 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
-const HtmlWebpackInsertAtBodyEndPlugin = require('html-webpack-insert-at-body-end');
 
 module.exports = {
     mode: 'development',
