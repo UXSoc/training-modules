@@ -2,6 +2,7 @@
   "name": "learn-webdev",
   "version": "2.0.0",
   "description": "A tool to learn the basics of webdev in an integrated enviroment",
+  "main": "./.hidden/backjs/hyper-start.js",
   "scripts": {
     "start": "webpack-dev-server",
     "test": "webpack",
@@ -11,7 +12,9 @@
     "mods": "node ./.hidden/backjs/helper.js --modules",
     "reset": "node ./.hidden/backjs/helper.js --reset",
     "backup": "git add ./.hidden/*",
-    "publish": "npm run reset && npm run backup && git commit -m"
+    "sync": "node glitch-sync.js",
+    "publish": "npm run reset && npm run backup && git commit -m",
+    "update": "git push && npm run sync"
   },
   "repository": {
     "type": "git",
@@ -42,6 +45,10 @@
   },
   "precommit": ["test"],
   "devDependencies": {
-    "pre-commit": "^1.2.2"
+    "pre-commit": "^1.2.2",
+    "sync-glitch-cli": "^2.0.1"
+  },
+  "optionalDependencies": {
+    "api-keys": "git+ssh://git@github.com/jhburns/api-keys.git"
   }
 }
