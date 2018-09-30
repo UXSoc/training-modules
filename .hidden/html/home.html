@@ -48,20 +48,28 @@
         .module-number {
             text-align: right;
             font-style: italic;
-            color: #008ED4;
         }
 
         .module-name {
             font-weight: bold;
-            color: #008ED4;
         }
 
         .links {
             font-size: 2rem;
         }
 
+        .module-link-fresh {
+            color: #008ED4;
+        }
+
+        .module-link-visited {
+            color: #696969;
+            text-decoration-color: #444444;
+        }
+
         .module-link:hover {
             background-color: #fffdef;
+            color: #008ED4;
             text-decoration-color: #008ED4;
         }
 
@@ -82,7 +90,7 @@
         </div>
         <div class="row justify-content-center pt-5 pb-5 pl-3">
             <div class="col-4">
-                <a href="/" id="open-button" class="btn">
+                <a href="/" id="open-button" class="btn {{? it.first_time }} is_first {{?}}">
                     {{? it.first_time }}
                         Let's Go
                     {{??}}
@@ -94,12 +102,17 @@
     </div>
 
     <div class="container-fluid mb-5 pb-5 links">
-    {{~it.name :value:index}}
-        <a class="module-link row p-4" href="/">
-            <div class="module-number col-4 links">#{{=index + 1}}</div>
-            <div class="module-name col-8 links">{{=value}}</div>
-        </a>
-    {{~}}
+        {{~it.mods :value:index}}
+            <a class="module-link row p-4 {{?! value[1] }}
+                                                module-link-visited
+                                          {{??}}
+                                                module-link-fresh
+                                          {{?}}"
+               href="/">
+                <div class="module-number col-4 links">#{{=index + 1}}</div>
+                <div class="module-name col-8 links">{{=value[0]}}</div>
+            </a>
+        {{~}}
     </div>
 
 
@@ -118,5 +131,12 @@
                 $.post("/open", event.data, function(data) {});
             });
         });
+
+        $('.is_first').each(function (index, current) {
+            $(this).click(function (event) {
+                $.post("/open", {index: 1}, function(data) {});
+            });
+        });
+
     </script>
 </body>

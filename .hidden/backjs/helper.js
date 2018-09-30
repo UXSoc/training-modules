@@ -13,6 +13,10 @@ var writeJson = require('write-json');
 //needed for remove
 var rmdir = require('rmdir');
 
+//needed for reset
+var path = require('path');
+var fsex = require('fs-extra');
+
 program
     .option('-n, --new [type]', 'Makes a new modules the the [folder name] given')
     .option('-d, --delete [type]', 'Deletes a modules with its [number] given')
@@ -20,6 +24,25 @@ program
     .option('-r, --reset', 'sets the config file back to default')
     .parse(process.argv);
 
+
+//return - string of folder name
+function get_current_folder() {
+    if (options.modules.length === 0) {
+        console.log("Error: ".red.bold + "not modules found");
+        console.log("Serving default template as a result");
+        //returns the current dir, which is just '.' in unix
+        //this is not just a period
+        //when plugged into get_current_json, this allows it to get the default template path
+        return ".";
+    }
+
+    var current_folder = options.modules[options.current - 1].folder;
+    return current_folder;
+}
+
+function get_current_json() {
+    return require('../modules/' + get_current_folder() + '/template.json');
+}
 
 // flag_name: string - name printed on error
 // output: var - the output of the commander ie program.new
@@ -70,7 +93,8 @@ if_flag_then("new", program.new, function() {
             const module_num = options.modules.length + 1;
             options.modules.push({
                 "folder": program.new,
-                "name": result.name
+                "name": result.name,
+                "not_visited": true
             });
             writeJson.sync('./.hidden/config.json', options);
 
@@ -161,10 +185,19 @@ if_flag("modules", program.modules, function () {
 });
 
 if_flag("reset", program.reset, function () {
-    console.log("Resetting".green + " to current: 1 and first_time: true in config");
+    console.log("Resetting".green + " modules");
 
     options.current = 1;
     options.first_time = true;
 
+    options.modules.forEach(function (mod) {
+        var current_config = get_current_json();
+        current_config.is_first = true;
+
+        mod.not_visited = true;
+        writeJson('./.hidden/modules/' + get_current_folder() + '/template.json', current_config, function () {});
+    });
+
+    fsex.copySync(path.resolve('./.hidden/modules/save.html'), './index.html');
     writeJson.sync('./.hidden/config.json', options);
 });

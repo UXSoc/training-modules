@@ -15,22 +15,26 @@ var fs = require('fs');
 var writeJson = require('write-json');
 
 global.home = "";
+global.template = fs.readFileSync(path.join(__dirname + '/../html/home.html')).toString();
+global.tempFn = doT.template(template);
 //Works in place, only needs to be called
 function render_home() {
-    var template = fs.readFileSync(path.join(__dirname + '/../html/home.html')).toString();
-    var tempFn = doT.template(template);
-    const modules_name = [];
+    var modules_links = [];
+
     options.modules.forEach(function (data) {
-        modules_name.push(data.name);
+        var one_mod = [data.name, data.not_visited];
+        modules_links.push(one_mod);
     });
-    template_data = {
-        name: modules_name,
-        first_time: options.first_time
+
+    const template_data = {
+        first_time: options.first_time,
+        mods: modules_links
     };
+    
     const renderHTML = tempFn(template_data);
+
     console.log("Success: built homepage".green.bold);
     home = renderHTML;
-    console.log(options.first_time);
 }
 
 //return - string of folder name
@@ -63,10 +67,16 @@ function get_mod() {
     if (current_config.is_first) {
         copy_from_too('./.hidden/modules/' + get_current_folder() + '/index.html', './.hidden/modules/' + get_current_folder() + '/save.html');
         current_config.is_first = false;
+        options.modules[options.current - 1].not_visited = false;
+        render_home();
     }
 
+    console.log(current_config.is_first);
+    console.log(options.modules[options.current - 1].not_visited);
+
     copy_from_too('./.hidden/modules/' + get_current_folder() + '/save.html', './index.html');
-    writeJson.sync('./.hidden/modules/' + get_current_folder() + '/template.json', current_config);
+    writeJson('./.hidden/modules/' + get_current_folder() + '/template.json', current_config, function () {});
+    writeJson('./.hidden/config.json', options, function () {});
 }
 
 function special_requests(app) {
@@ -96,25 +106,10 @@ function special_requests(app) {
         if (options.first_time) {
             options.first_time = false;
             options.current = 1;
-
             render_home();
         }
 
-        writeJson.sync('./.hidden/config.json', options);
-    });
-
-    app.get('/current', function (req, res) {
-        var current_config = get_current_json();
-
-        const send_data = {
-            title: current_config.title,
-            number: options.current,
-        };
-
-        res.json(send_data);
-        console.log("Loading module " + current_config.title.green.bold + ' #' + options.current + " successfully");
-
-        writeJson.sync('./.hidden/config.json', options);
+        writeJson('./.hidden/config.json', options, function () {});
     });
 
     app.get('/home', function (req, res) {
@@ -132,7 +127,7 @@ function special_requests(app) {
 
         get_mod();
 
-        writeJson.sync('./.hidden/config.json', options);
+        writeJson('./.hidden/config.json', options, function () {});
     });
 
     app.get('/back', function (req, res) {
@@ -143,7 +138,7 @@ function special_requests(app) {
 
         get_mod();
 
-        writeJson.sync('./.hidden/config.json', options);
+        writeJson.sync('./.hidden/config.json', options, function () {});
     });
 
     app.get('/wipe', function (req, res) {
@@ -160,7 +155,7 @@ function special_requests(app) {
         get_mod();
         res.end('yes');
 
-        writeJson.sync('./.hidden/config.json', options);
+        writeJson('./.hidden/config.json', options, function () {});
     });
 }
 
@@ -168,7 +163,6 @@ module.exports = {
     run: function(app) {
         console.log("Starting Front End UI".bold + " Version: ".dim + process.env.npm_package_version.dim);
 
-        get_mod();
         render_home();
         special_requests(app);
     }
