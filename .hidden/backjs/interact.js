@@ -40,7 +40,7 @@ function render_home() {
 //return - string of folder name
 function get_current_folder() {
     if (options.modules.length === 0) {
-        console.log("Error: ".red.bold + "not modules found");
+        console.log("Error: ".red.bold + "no modules found");
         console.log("Serving default template as a result");
         //returns the current dir, which is just '.' in unix
         //this is not just a period

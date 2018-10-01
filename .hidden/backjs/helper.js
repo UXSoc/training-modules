@@ -208,5 +208,9 @@ if_flag("reset", program.reset, function () {
     });
 
     fsex.copySync(path.resolve('./.hidden/modules/save.html'), './index.html');
-    writeJson.sync('./.hidden/config.json', options);
+    writeJson('./.hidden/config.json', options, function () {});
+
+    var template_config = require('../modules/template.json');
+    template_config.is_first = true;
+    writeJson('./.hidden/modules/template.json', template_config, function () {});
 });
