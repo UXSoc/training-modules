@@ -195,8 +195,6 @@ if_flag("reset", program.reset, function () {
     options.current = 1;
     options.first_time = true;
 
-    fsex.closeSync(fsex.openSync('./.hidden/modules/save.html', 'w'));
-
     options.modules.forEach(function (mod) {
         var current_config = get_current_json();
         current_config.is_first = true;
@@ -209,8 +207,4 @@ if_flag("reset", program.reset, function () {
 
     fsex.copySync(path.resolve('./.hidden/modules/save.html'), './index.html');
     writeJson('./.hidden/config.json', options, function () {});
-
-    var template_config = require('../modules/template.json');
-    template_config.is_first = true;
-    writeJson('./.hidden/modules/template.json', template_config, function () {});
 });
