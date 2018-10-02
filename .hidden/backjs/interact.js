@@ -45,7 +45,7 @@ function get_current_folder() {
         //returns the current dir, which is just '.' in unix
         //this is not just a period
         //when plugged into get_current_json, this allows it to get the default template path
-        return ".";
+        return "defualt";
     }
 
     var current_folder = options.modules[options.current - 1].folder;
@@ -156,7 +156,6 @@ function special_requests(app) {
 
     //can't handle a lot of requests for some reason, but first always gets through
     app.get('/toggle_ui', function (req, res) {
-      console.log("ok");
       options.ui_open = !options.ui_open;
     });
 }
