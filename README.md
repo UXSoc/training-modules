@@ -8,7 +8,7 @@ You can now access various modules and the're html will appear in index.html!
 
 After editing the *index.html* file the webpage opened will automatically reload.
 
-## Tips
+## Tips 
 
 - If the index file is empty, the UI won't load properly
 - The index.html file will save automatically for each module so you can always go back!
