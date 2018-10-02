@@ -72,7 +72,7 @@ $(document).ready(function() {
                     $('#emoji-IV7').text(onload_data.emoji);
 
                     add_toggle();
-                    toggle();
+                    toggle();;
                 });
             });
         }
