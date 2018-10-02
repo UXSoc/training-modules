@@ -41,7 +41,7 @@
     "webpack-dev-server": "^3.1.9",
     "write-json": "^3.0.1"
   },
-  "precommit": ["test"],
+  "precommit": ["reset", "backup"],
   "devDependencies": {
     "pre-commit": "^1.2.2"
   }
