@@ -1,7 +1,7 @@
 {
-  "current": "1",
-  "first_time": false,
-  "ui_open": false,
+  "current": 1,
+  "first_time": true,
+  "ui_open": true,
   "colors": [
     "FFAFB6",
     "FFCF98",

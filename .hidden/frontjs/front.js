@@ -43,7 +43,7 @@ function add_toggle() {
 
         $('#emoji-IV7').text(result);
 
-
+        $.get('/toggle_ui');
         toggle();
     });
 }
@@ -78,5 +78,3 @@ $(document).ready(function() {
         }
     });
 });
-
-
