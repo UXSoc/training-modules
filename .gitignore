@@ -16,3 +16,9 @@ node_modules/
 
 # Webstorm
 .idea
+
+# npm
+package-lock.json
+
+# personal files
+index.html
