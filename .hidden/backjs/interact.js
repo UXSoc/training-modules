@@ -85,7 +85,7 @@ function special_requests(app) {
         var current_config = get_current_json();
 
         var color = rand_color();
-        var emoji = emoji_engine.get(rand_emoji());
+        var emoji = (options.ui_open ? "+" : "–") + emoji_engine.get(rand_emoji());
         var title = current_config.title;
         var number = "#" + options.current;
 
@@ -152,6 +152,11 @@ function special_requests(app) {
         res.end('yes');
 
         writeJson('./.hidden/config.json', options, function () {});
+    });
+
+    //can't handle a lot of requests for some reason, but first always gets through
+    app.get('/toggle_ui', function (req, res) {
+       options.ui_open = !options.ui_open;
     });
 }
 
