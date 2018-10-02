@@ -2,17 +2,23 @@
 <style>
     @import url('https://fonts.googleapis.com/css?family=Open+Sans');
 
+    /* Needed cause defualt is 8px */
+
+    body {
+      margin: 0;
+    }
+
     #injected-IV7 {
         padding: 1rem;
-        border-radius: 300px;
-        margin-left: 2rem;
-        margin-right: 2rem;
+        position: fixed;
+        bottom: 1rem;
+        width: 100%;
     }
 
     /* IV7 is appended to prevent possible collisions */
     #injected-IV7 > * {
         font-family: 'Open Sans', Arial, sans-serif;
-        display: inline-block;
+        display: inline;
         margin: 0;
         padding-left: 2rem;
         padding-left: 2rem;
@@ -31,7 +37,6 @@
     }
 
     #emoji-IV7 {
-        float: right;
         padding-right: 1rem;
     }
 
@@ -46,10 +51,6 @@
     }
 
 </style>
-<br>
-<br>
-<br>
-<br>
 <div id="injected-IV7">
     <p id="number-IV7"></p>
     <p id="title-IV7"></p>
