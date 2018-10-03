@@ -45,8 +45,6 @@ function get_current_folder() {
         //returns the current dir, which is just '.' in unix
         //this is not just a period
         //when plugged into get_current_json, this allows it to get the default template path
-        copy_from_too( './.hidden/modules/' + 'default' + '/index.html' , './.hidden/modules/' + 'default' + '/save.html');
-        copy_from_too('./.hidden/modules/' + 'default' + '/save.html', './index.html');
         return "default";
     }
 
