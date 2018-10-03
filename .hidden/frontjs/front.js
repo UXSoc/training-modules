@@ -20,10 +20,14 @@ function after_inject() {
 function toggle() {
     var signage = $('#emoji-IV7').text();
 
-    if (signage.charAt(0) === "+") {
+    if (signage.charAt(0) === "–") {
         $('#collapse-IV7').show();
+        $('#injected-IV7').css("display", "flex");
+        $('#injected-IV7').css("float", "none");
     } else {
         $('#collapse-IV7').hide();
+        $('#injected-IV7').css("display", "inline-block");
+        $('#injected-IV7').css("float", "right");
     }
 }
 
@@ -72,7 +76,7 @@ $(document).ready(function() {
                     $('#emoji-IV7').text(onload_data.emoji);
 
                     add_toggle();
-                    toggle();;
+                    toggle();
                 });
             });
         }

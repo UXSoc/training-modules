@@ -10,15 +10,25 @@
 
     /* IV7 is appended to prevent possible collisions */
     #injected-IV7 {
+        flex-wrap: wrap;
+        border-radius: 5px 20px 5px;
+        margin-right: 3rem;
+        margin-left: 3rem;
+        display: flex;
+        float: right;
+    }
+
+    #large-IV7 {
         position: fixed;
-        bottom: 1rem;
         width: 100%;
+        bottom: 1rem;
     }
 
     #title-IV7 {
         color: #000000;
         font-weight: bold;
         padding-right: 1rem;
+        padding-left: 1rem;
     }
 
     #number-IV7 {
@@ -32,11 +42,14 @@
         display: inline-block;
         margin: 0;
         font-size: 1.5rem;
+        padding-bottom: 0.5rem;
+        padding-top: 0.5rem;
     }
 
     .link-IV7 {
         color: #444444;
         text-decoration: none;
+        padding-right: 1rem;
     }
 
     .link-IV7:hover {
@@ -45,26 +58,43 @@
     }
 
     #collapse-IV7 {
-        display: inline-block;
+        flex-wrap: wrap;
+        display: flex;
+        flex-grow: 1;
+        justify-content: center;
     }
 
     #collapse-IV7  > * {
         font-family: 'Open Sans', Arial, sans-serif;
         display: inline-block;
-        margin: 0;
         font-size: 1.5rem;
+        padding-bottom: 0.5rem;
+        padding-top: 0.5rem;
+        margin: 0;
+    }
+
+    #emoji-mover-IV7 {
+        display: flex;
+        text-align: center;
+        padding-right: 2rem;
+        padding-left: 3rem;
+        align-self:flex-end;
+        margin-left: auto;
     }
 </style>
-<div id="injected-IV7">
-    <div id="collapse-IV7">
-        <p id="number-IV7"></p>
-        <p id="title-IV7"></p>
-        <a href="./home" id="home-IV7" class="link-IV7">Home</a>
-        <a href="#" id="back-IV7" class="link-IV7">Previous</a>
-        <a href="#" id="next-IV7" class="link-IV7">Next</a>
-        <a href="#" id="wipe-IV7" class="link-IV7">Wipe</a>
-    </div>
+<div id="large-IV7">
+    <div id="injected-IV7">
+        <div id="collapse-IV7">
+            <p id="number-IV7"></p>
+            <p id="title-IV7"></p>
+            <a href="./home" id="home-IV7" class="link-IV7">Home</a>
+            <a href="#" id="back-IV7" class="link-IV7">Previous</a>
+            <a href="#" id="next-IV7" class="link-IV7">Next</a>
+            <a href="#" id="wipe-IV7" class="link-IV7">Wipe</a>
+        </div>
 
-    <!-- This is dynamically filled in-->
-    <a href="#" id="emoji-IV7" class="link-IV7"></a>
+        <div id="emoji-mover-IV7">
+            <a href="#" id="emoji-IV7" class="link-IV7"></a>
+        </div>
+    </div>
 </div>

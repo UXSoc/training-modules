@@ -1,7 +1,7 @@
 {
-  "current": 1,
-  "first_time": true,
-  "ui_open": true,
+  "current": "1",
+  "first_time": false,
+  "ui_open": false,
   "colors": [
     "FFAFB6",
     "FFCF98",
@@ -19,5 +19,11 @@
     "joy",
     "thinking_face"
   ],
-  "modules": []
+  "modules": [
+    {
+      "folder": "1",
+      "name": "yeeeeeeeeeeeeeeeeee",
+      "not_visited": false
+    }
+  ]
 }
