@@ -182,10 +182,10 @@ if_flag_then("delete", program.delete, function () {
 
 if_flag("modules", program.modules, function () {
     console.log("All modules: ".blue.bold);
-    console.log("[Num]\t[Name]\t[folder name]".dim);
+    console.log("[Num]\t[Name]\t/[folder name]".dim);
 
     options.modules.forEach(function (mod, i) {
-        console.log(i + 1 + '\t'+ mod.name + '\t' + mod.folder);
+        console.log(i + 1 + '\t'+ mod.name.bold + '   /' + mod.folder);
     })
 });
 
