@@ -19,6 +19,3 @@ node_modules/
 
 # npm
 package-lock.json
-
-# personal files
-index.html
