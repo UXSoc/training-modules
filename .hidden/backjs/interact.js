@@ -85,7 +85,7 @@ function special_requests(app) {
         var current_config = get_current_json();
 
         var color = rand_color();
-        var emoji = (options.ui_open ? "+" : "–") + emoji_engine.get(rand_emoji());
+        var emoji = (options.ui_open ? "–" : "+") + emoji_engine.get(rand_emoji());
         var title = current_config.title;
         var number = "#" + options.current;
 
