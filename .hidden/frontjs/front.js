@@ -56,9 +56,7 @@ $(document).ready(function() {
     // Needs to check each script tag because I can't a tag throught the Webpack injector
     $('script').each(function (index, current) {
         if ($(current).attr('src') == 'script.js') {
-            if (!$('body').length) {
-                $('head').after($(current));
-            }
+            $('body').append($(current));
 
             $.get('./.hidden/html/ui.html', function(data) {
                 $(current).before("<!-- This html is injected when serving the page to make the UI -->");
