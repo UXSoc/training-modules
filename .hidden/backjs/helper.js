@@ -24,24 +24,8 @@ program
     .option('-r, --reset', 'sets the config file back to default')
     .parse(process.argv);
 
-
-//return - string of folder name
-function get_current_folder() {
-    if (options.modules.length === 0) {
-        console.log("Error: ".red.bold + "not modules found");
-        console.log("Serving default template as a result");
-        //returns the current dir, which is just '.' in unix
-        //this is not just a period
-        //when plugged into get_current_json, this allows it to get the default template path
-        return ".";
-    }
-
-    var current_folder = options.modules[options.current - 1].folder;
-    return current_folder;
-}
-
-function get_current_json() {
-    return require('../modules/' + get_current_folder() + '/template.json');
+function get_a_json(folder_name) {
+    return require('../modules/' + folder_name + '/template.json');
 }
 
 // flag_name: string - name printed on error
@@ -197,13 +181,13 @@ if_flag("reset", program.reset, function () {
     options.ui_open = true;
 
     options.modules.forEach(function (mod) {
-        var current_config = get_current_json();
+        var current_config = get_a_json(mod.folder);
         current_config.is_first = true;
 
         mod.not_visited = true;
-        writeJson('./.hidden/modules/' + get_current_folder() + '/template.json', current_config, function () {});
+        writeJson('./.hidden/modules/' + mod.folder + '/template.json', current_config, function () {});
 
-        fsex.copySync(path.resolve('./.hidden/modules/save.html'), './.hidden/modules/' + get_current_folder() + '/save.html');
+        fsex.copySync(path.resolve('./.hidden/modules/save.html'), './.hidden/modules/' + mod.folder+ '/save.html');
     });
 
     fsex.copySync(path.resolve('./.hidden/modules/save.html'), './index.html');
