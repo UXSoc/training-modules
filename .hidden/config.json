@@ -1,6 +1,6 @@
 {
-  "current": 4,
-  "first_time": false,
+  "current": 1,
+  "first_time": true,
   "ui_open": true,
   "colors": [
     "FFAFB6",
@@ -23,7 +23,7 @@
     {
       "folder": "first",
       "name": "Welcome to the first module",
-      "not_visited": false
+      "not_visited": true
     },
     {
       "folder": "tutorial",
