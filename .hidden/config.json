@@ -89,6 +89,36 @@
       "folder": "comment",
       "name": "Adding a comment",
       "not_visited": true
+    },
+    {
+      "folder": "unordered-list",
+      "name": "Unordered List",
+      "not_visited": true
+    },
+    {
+      "folder": "ordered-list",
+      "name": "Ordered List",
+      "not_visited": true
+    },
+    {
+      "folder": "special-chars",
+      "name": "Special Characters",
+      "not_visited": true
+    },
+    {
+      "folder": "view-source",
+      "name": "View page source",
+      "not_visited": true
+    },
+    {
+      "folder": "inspect-element",
+      "name": "Inspect element",
+      "not_visited": true
+    },
+    {
+      "folder": "console-intro",
+      "name": "Console Intro",
+      "not_visited": true
     }
   ]
 }
