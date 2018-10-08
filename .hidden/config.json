@@ -69,6 +69,26 @@
       "folder": "heading tag",
       "name": "Heading tags",
       "not_visited": true
+    },
+    {
+      "folder": "html-links",
+      "name": "Linking",
+      "not_visited": true
+    },
+    {
+      "folder": "not-indented",
+      "name": "HTML indentaion ",
+      "not_visited": true
+    },
+    {
+      "folder": "button",
+      "name": "Buttons",
+      "not_visited": true
+    },
+    {
+      "folder": "comment",
+      "name": "Adding a comment",
+      "not_visited": true
     }
   ]
 }

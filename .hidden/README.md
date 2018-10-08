@@ -14,6 +14,10 @@ This directory contains all the files needed to make everything happen behind th
 - `npm run reset` resets the config file which is useful for testing
 - `npm run publish [message]` will reset the project and commit for you with the message supplied. Then just run `git push`
 
+## Important
+
+The server (`npm start`) **needs** to be shut off when making a new module or else the config file will get overwritten without it. 
+
 ## Layout
 
 The main runner is *webpack.config.js* in the root folder, it runs the dev server.
