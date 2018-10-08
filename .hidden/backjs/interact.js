@@ -107,6 +107,11 @@ function special_requests(app) {
         }
 
         writeJson('./.hidden/config.json', options, function () {});
+
+        //To fix an issue where navigating to root on first doesn't load
+        if (current_config.is_first) {
+          get_mod();
+        }
     });
 
     app.get('/home', function (req, res) {
