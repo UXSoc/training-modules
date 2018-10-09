@@ -10,9 +10,6 @@ const { exec } = require('child_process');
 var prompt = require('prompt');
 var writeJson = require('write-json');
 
-//needed for remove
-var rmdir = require('rmdir');
-
 //needed for reset
 var path = require('path');
 var fsex = require('fs-extra');
@@ -145,19 +142,20 @@ if_flag_then("delete", program.delete, function () {
                 return;
             }
 
-            rmdir('./.hidden/modules/' + options.modules[program.delete - 1].folder, function (err, dirs, files) {
+            var name = options.modules[program.delete - 1].name;
+
+            fsex.remove('./.hidden/modules/' + options.modules[program.delete - 1].folder, function (err) {
                 if (err) {
                     console.log("Error: ".red + "when deleting files");
                     console.log(err);
                 }
 
-                console.log("Deleting dir: " + dirs.join(" ").bold);
-                console.log("Deleting files: " + files.join(" \n").bold);
-
-                //delete from array too
-                options.modules.splice(options.modules, program.delete);
-                writeJson.sync('./.hidden/config.json', options);
+                console.log("Deleting mod: " + name.bold);
             });
+
+            //delete from console too
+            options.modules.splice(program.delete - 1, 1);
+            writeJson.sync('./.hidden/config.json', options);
         });
     } else {
         console.log("Error (Out of Range): ".red + "please only pass a number corresponding to the module");
