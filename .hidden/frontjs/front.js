@@ -67,6 +67,11 @@ $(document).ready(function() {
 
                 // See colors at https://coolors.co/ffafb6-ffcf98-e1eaff-ffffa2-b2ffa2
                 $.get('/on-load', function(onload_data) {
+                    //Work around to force reload first time
+                    if (onload_data.first) {
+                        location.reload();
+                    }
+
                     // work-around because .css wasn't working for some reason
                     $('#injected-IV7').attr('style','background-color: #'+ onload_data.color);
                     $('#title-IV7').text(onload_data.title);
@@ -80,3 +85,5 @@ $(document).ready(function() {
         }
     });
 });
+
+

@@ -71,6 +71,8 @@ function get_mod() {
         render_home();
     }
 
+    console.log(get_current_folder());
+
     copy_from_too('./.hidden/modules/' + get_current_folder() + '/save.html', './index.html');
     writeJson('./.hidden/modules/' + get_current_folder() + '/template.json', current_config, function () {});
     writeJson('./.hidden/config.json', options, function () {});
@@ -88,21 +90,23 @@ function special_requests(app) {
         var emoji = (options.ui_open ? "–" : "+") + emoji_engine.get(rand_emoji());
         var title = current_config.title;
         var number = "#" + options.current;
+        //Needs to know if this is the first time to workaround reload not working on the first
+        var first = options.first_time;
 
-         var output = {
-             color,
-             emoji,
-             title,
-             number
-         };
-         res.json(output);
+        var output = {
+            color,
+            emoji,
+            title,
+            number,
+            first
+        };
+        res.json(output);
 
-         //automatic saving
+        //automatic saving
         copy_from_too('./index.html', './.hidden/modules/' + get_current_folder() + '/save.html');
 
         if (options.first_time) {
             options.first_time = false;
-            options.current = 1;
             render_home();
         }
 
@@ -110,7 +114,7 @@ function special_requests(app) {
 
         //To fix an issue where navigating to root on first doesn't load
         if (current_config.is_first) {
-          get_mod();
+            get_mod();
         }
     });
 
@@ -161,9 +165,9 @@ function special_requests(app) {
 
     //can't handle a lot of requests for some reason, but first always gets through
     app.get('/toggle_ui', function (req, res) {
-      options.ui_open = !options.ui_open;
-      //has to send back to close out request or else will light crash
-      res.send("ok");
+        options.ui_open = !options.ui_open;
+        //has to send back to close out request or else will light crash
+        res.send("ok");
     });
 }
 
@@ -175,3 +179,5 @@ module.exports = {
         special_requests(app);
     }
 };
+
+
