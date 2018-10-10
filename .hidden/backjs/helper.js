@@ -5,7 +5,6 @@ var options = require('../config.json');
 var module_options = require('../modules/template.json');
 
 //Needed for new
-var copyfiles = require('copyfiles');
 const { exec } = require('child_process');
 var prompt = require('prompt');
 var writeJson = require('write-json');
