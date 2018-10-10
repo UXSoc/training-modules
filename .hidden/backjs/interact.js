@@ -154,7 +154,7 @@ function special_requests(app) {
 
     app.post('/open', function (req, res) {
         if (req.body.index) {
-            options.current = req.body.index;
+            options.current = parseInt(req.body.index, 10);
         }
 
         get_mod();
