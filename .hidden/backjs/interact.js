@@ -71,8 +71,6 @@ function get_mod() {
         render_home();
     }
 
-    console.log(get_current_folder());
-
     copy_from_too('./.hidden/modules/' + get_current_folder() + '/save.html', './index.html');
     writeJson('./.hidden/modules/' + get_current_folder() + '/template.json', current_config, function () {});
     writeJson('./.hidden/config.json', options, function () {});
@@ -179,5 +177,3 @@ module.exports = {
         special_requests(app);
     }
 };
-
-
