@@ -10,7 +10,6 @@ After editing the *index.html* file the webpage opened will automatically reload
 
 ## Tips 
 
-- If the index file is empty, the UI won't load properly
 - The index.html file will save automatically for each module so you can always go back!
 - Whenever the webpage updates, the UI bar will be a different color and the emoji will change.
 - Additional html is injected to load the UI in the webpage, but don't worry it shouldn't affect your html.
