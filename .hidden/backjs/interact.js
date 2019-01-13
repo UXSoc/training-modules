@@ -158,7 +158,7 @@ function special_requests(app) {
 
         get_mod();
 
-        writeJson.sync('./.hidden/config.json', options);
+        writeJson('./.hidden/config.json', options);
     });
 
     //GET
