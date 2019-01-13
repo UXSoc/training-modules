@@ -184,6 +184,7 @@ function special_requests(app) {
     app.get('/toggle_ui', function (req, res) {
         options.ui_open = !options.ui_open;
         //has to send back to close out request or else will light crash
+        writeJson('./.hidden/config.json', options);
         res.send("UI toggle saved");
     });
 }
