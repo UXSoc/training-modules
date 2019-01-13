@@ -4,7 +4,7 @@
   "description": "A tool to learn the basics of webdev in an integrated enviroment",
   "main": "hyper-start.js",
   "scripts": {
-    "start": "webpack-dev-server",
+    "start": "webpack-dev-server --progress",
     "test": "webpack",
     "new": "node ./.hidden/backjs/helper.js --new ",
     "delete": "node ./.hidden/backjs/helper.js --delete ",
