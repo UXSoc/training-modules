@@ -1,4 +1,5 @@
 var colors = require('colors');
+
 var options = require('../config.json');
 var emoji_engine = require('node-emoji');
 var path = require('path');
@@ -9,10 +10,9 @@ var rand_color = uniqueRandomArray(options.colors);
 var rand_emoji = uniqueRandomArray(options.emojis);
 
 var fsex = require('fs-extra');
+var fs = require('fs');
 
 var doT =  require('dot');
-var fs = require('fs');
-var writeJson = require('write-json');
 
 global.home = "";
 global.template = fs.readFileSync(path.join(__dirname + '/../html/home.html')).toString();
@@ -68,6 +68,14 @@ function copy_from_too(source, destination) {
     }
 }
 
+function writeJson(file, object) {
+    try {
+        fsex.writeJsonSync(file, object);
+    } catch (err) {
+        console.error("Error: ".red.bold + "could not write object " + object.bold + " to destination " + file.bold);
+    }
+}
+
 //Moves the index the module to the main index file
 function get_mod() {
     if (options.modules[options.current - 1].not_visited) {
@@ -77,7 +85,7 @@ function get_mod() {
     }
 
     copy_from_too('./.hidden/modules/' + get_current_folder() + '/save.html', './index.html');
-    writeJson('./.hidden/config.json', options, function () {});
+    writeJson('./.hidden/config.json', options);
 }
 
 function special_requests(app) {
@@ -113,7 +121,7 @@ function special_requests(app) {
             render_home();
         }
 
-        writeJson('./.hidden/config.json', options, function () {});
+        writeJson('./.hidden/config.json', options);
 
         //To fix an issue where navigating to root on first doesn't load
         if (options.modules[options.current - 1].not_visited) {
@@ -138,7 +146,7 @@ function special_requests(app) {
 
         get_mod();
 
-        writeJson('./.hidden/config.json', options, function () {});
+        writeJson('./.hidden/config.json', options);
     });
 
     //GET
@@ -150,7 +158,7 @@ function special_requests(app) {
 
         get_mod();
 
-        writeJson.sync('./.hidden/config.json', options, function () {});
+        writeJson.sync('./.hidden/config.json', options);
     });
 
     //GET
@@ -168,7 +176,7 @@ function special_requests(app) {
         get_mod();
         res.end('yes');
 
-        writeJson('./.hidden/config.json', options, function () {});
+        writeJson('./.hidden/config.json', options);
     });
 
     //can't handle a lot of requests for some reason, but first always gets through
