@@ -1,7 +1,7 @@
 {
-  "current": 1,
-  "first_time": true,
-  "ui_open": true,
+  "current": 5,
+  "first_time": false,
+  "ui_open": false,
   "colors": [
     "FFAFB6",
     "FFCF98",
@@ -23,27 +23,27 @@
     {
       "folder": "first",
       "name": "Welcome to the first module",
-      "not_visited": true
+      "not_visited": false
     },
     {
       "folder": "tutorial",
       "name": "Intro to the UI",
-      "not_visited": true
+      "not_visited": false
     },
     {
       "folder": "closing menu",
       "name": "Collapsing the menu",
-      "not_visited": true
+      "not_visited": false
     },
     {
       "folder": "tagging",
       "name": "HTML and tags",
-      "not_visited": true
+      "not_visited": false
     },
     {
       "folder": "intro to break",
       "name": "More on tags",
-      "not_visited": true
+      "not_visited": false
     },
     {
       "folder": "basic structure",
