@@ -53,7 +53,7 @@ function add_toggle() {
 }
 
 $(document).ready(function() {
-    // Needs to check each script tag because I can't a tag throught the Webpack injector
+    // Needs to check each script tag because I can't know the tag through the Webpack injector
     $('script').each(function (index, current) {
         if ($(current).attr('src') == 'script.js') {
             $('body').append($(current));
