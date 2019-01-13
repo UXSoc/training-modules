@@ -78,37 +78,34 @@ if_flag_then("new", program.new, function() {
             console.log("Error ".red.bold + err);
         }
 
-        copyfiles(['./.hidden/modules/index.html', './.hidden/modules/save.html','./.hidden/modules/' +  program.new], {up: true}, function (err) {
+        console.log('./.hidden/modules/' + program.new);
+        fsex.ensureDirSync('./.hidden/modules/' + program.new);
+        fsex.copySync('./.hidden/modules/index.html', './.hidden/modules/' +  program.new + '/index.html');
+        fsex.copySync(path.resolve('./.hidden/modules/save.html'), './.hidden/modules/' + program.new + '/save.html');
+
+        module_options.title = result.name;
+        writeJson('./.hidden/modules/' + program.new +'/template.json', module_options);
+
+        const module_num = options.modules.length + 1;
+        options.modules.push({
+            "folder": program.new,
+            "name": result.name,
+            "not_visited": true
+        });
+        writeJson('./.hidden/config.json', options);
+
+        // Note: module num can't be colored because it is const and immutable
+        console.log("Success: ".green.bold + "new module called: " + result.name.bold
+                    + ' (#' + module_num + ')' + " created in folder: " + program.new.bold);
+        exec('npm run backup', (err, stdout, stderr) => {
             if (err) {
-                console.log("Error, copying files failed".red.bold);
-                console.log(err);
+                console.error('Error when adding to github: '.red.bold + err);
                 return;
             }
+            console.log(stdout);
+            console.log(stderr);
 
-            module_options.title = result.name;
-            writeJson('./.hidden/modules/' + program.new +'/template.json', module_options);
-
-            const module_num = options.modules.length + 1;
-            options.modules.push({
-                "folder": program.new,
-                "name": result.name,
-                "not_visited": true
-            });
-            writeJson('./.hidden/config.json', options);
-
-            // Note: module num can't be colored because it is const and immutable
-            console.log("Success: ".green.bold + "new module called: " + result.name.bold
-                        + ' (#' + module_num + ')' + " created in folder: " + program.new.bold);
-            exec('npm run backup', (err, stdout, stderr) => {
-                if (err) {
-                    console.error('Error when adding to github: '.red.bold + err);
-                    return;
-                }
-                console.log(stdout);
-                console.log(stderr);
-
-                console.log("Also backed up files when making module".dim);
-            });
+            console.log("Also backed up files when making module".dim);
         });
     });
 });
