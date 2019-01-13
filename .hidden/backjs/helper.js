@@ -51,7 +51,7 @@ function if_flag(flag_name, output, when_called) {
 
 function writeJson(file, object) {
     try {
-        fsex.writeJsonSync(file, object);
+        fsex.writeJsonSync(file, object, {spaces: '\t'});
     } catch (err) {
         console.error("Error: ".red.bold + "could not write object " + object.bold + " to destination " + file.bold);
     }

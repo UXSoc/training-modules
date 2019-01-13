@@ -1,1 +1,124 @@
-{"current":1,"first_time":true,"ui_open":true,"colors":["FFAFB6","FFCF98","E1EAFF","FFFFA2","B2FFA2"],"emojis":["laughing","kissing_heart","wink","sweat","sob","sunglasses","joy","thinking_face"],"modules":[{"folder":"first","name":"Welcome to the first module","not_visited":true},{"folder":"tutorial","name":"Intro to the UI","not_visited":true},{"folder":"closing menu","name":"Collapsing the menu","not_visited":true},{"folder":"tagging","name":"HTML and tags","not_visited":true},{"folder":"intro to break","name":"More on tags","not_visited":true},{"folder":"basic structure","name":"Basics of structure","not_visited":true},{"folder":"next level structure","name":"A bit of a challenge ","not_visited":true},{"folder":"body tags","name":"Body Tag","not_visited":true},{"folder":"header tags","name":"Header tags","not_visited":true},{"folder":"heading tag","name":"Heading tags","not_visited":true},{"folder":"html-links","name":"Linking","not_visited":true},{"folder":"not-indented","name":"HTML indentaion ","not_visited":true},{"folder":"button","name":"Buttons","not_visited":true},{"folder":"comment","name":"Adding a comment","not_visited":true},{"folder":"unordered-list","name":"Unordered List","not_visited":true},{"folder":"ordered-list","name":"Ordered List","not_visited":true},{"folder":"special-chars","name":"Special Characters","not_visited":true},{"folder":"view-source","name":"View page source","not_visited":true},{"folder":"inspect-element","name":"Inspect element","not_visited":true},{"folder":"console-intro","name":"Console Intro","not_visited":true}]}
+{
+	"current": 1,
+	"first_time": true,
+	"ui_open": true,
+	"colors": [
+		"FFAFB6",
+		"FFCF98",
+		"E1EAFF",
+		"FFFFA2",
+		"B2FFA2"
+	],
+	"emojis": [
+		"laughing",
+		"kissing_heart",
+		"wink",
+		"sweat",
+		"sob",
+		"sunglasses",
+		"joy",
+		"thinking_face"
+	],
+	"modules": [
+		{
+			"folder": "first",
+			"name": "Welcome to the first module",
+			"not_visited": true
+		},
+		{
+			"folder": "tutorial",
+			"name": "Intro to the UI",
+			"not_visited": true
+		},
+		{
+			"folder": "closing menu",
+			"name": "Collapsing the menu",
+			"not_visited": true
+		},
+		{
+			"folder": "tagging",
+			"name": "HTML and tags",
+			"not_visited": true
+		},
+		{
+			"folder": "intro to break",
+			"name": "More on tags",
+			"not_visited": true
+		},
+		{
+			"folder": "basic structure",
+			"name": "Basics of structure",
+			"not_visited": true
+		},
+		{
+			"folder": "next level structure",
+			"name": "A bit of a challenge ",
+			"not_visited": true
+		},
+		{
+			"folder": "body tags",
+			"name": "Body Tag",
+			"not_visited": true
+		},
+		{
+			"folder": "header tags",
+			"name": "Header tags",
+			"not_visited": true
+		},
+		{
+			"folder": "heading tag",
+			"name": "Heading tags",
+			"not_visited": true
+		},
+		{
+			"folder": "html-links",
+			"name": "Linking",
+			"not_visited": true
+		},
+		{
+			"folder": "not-indented",
+			"name": "HTML indentaion ",
+			"not_visited": true
+		},
+		{
+			"folder": "button",
+			"name": "Buttons",
+			"not_visited": true
+		},
+		{
+			"folder": "comment",
+			"name": "Adding a comment",
+			"not_visited": true
+		},
+		{
+			"folder": "unordered-list",
+			"name": "Unordered List",
+			"not_visited": true
+		},
+		{
+			"folder": "ordered-list",
+			"name": "Ordered List",
+			"not_visited": true
+		},
+		{
+			"folder": "special-chars",
+			"name": "Special Characters",
+			"not_visited": true
+		},
+		{
+			"folder": "view-source",
+			"name": "View page source",
+			"not_visited": true
+		},
+		{
+			"folder": "inspect-element",
+			"name": "Inspect element",
+			"not_visited": true
+		},
+		{
+			"folder": "console-intro",
+			"name": "Console Intro",
+			"not_visited": true
+		}
+	]
+}
