@@ -1,4 +1,5 @@
 var colors = require('colors');
+
 var options = require('../config.json');
 var emoji_engine = require('node-emoji');
 var path = require('path');
@@ -9,15 +10,16 @@ var rand_color = uniqueRandomArray(options.colors);
 var rand_emoji = uniqueRandomArray(options.emojis);
 
 var fsex = require('fs-extra');
+var fs = require('fs');
 
 var doT =  require('dot');
-var fs = require('fs');
-var writeJson = require('write-json');
 
 global.home = "";
 global.template = fs.readFileSync(path.join(__dirname + '/../html/home.html')).toString();
 global.tempFn = doT.template(template);
+
 //Works in place, only needs to be called
+//Generates the home html, then moves it to global scope to the home variable
 function render_home() {
     var modules_links = [];
 
@@ -52,28 +54,38 @@ function get_current_folder() {
     return current_folder;
 }
 
+//Loads the current config file into program
 function get_current_json() {
     return require('../modules/' + get_current_folder() + '/template.json');
 }
 
-//first file has to exist
-//TODO: add error handling
+//Simple wrapper function,
 function copy_from_too(source, destination) {
-    fsex.copySync(path.resolve(source), destination);
+    try {
+        fsex.copySync(path.resolve(source), destination);
+    } catch (err) {
+        console.error("Error: ".red.bold + "could not copy file " + source.bold + " to destination " + destination.bold);
+    }
 }
 
+function writeJson(file, object) {
+    try {
+        fsex.writeJsonSync(file, object);
+    } catch (err) {
+        console.error("Error: ".red.bold + "could not write object " + object.bold + " to destination " + file.bold);
+    }
+}
+
+//Moves the index the module to the main index file
 function get_mod() {
-    var current_config = get_current_json();
-    if (current_config.is_first) {
+    if (options.modules[options.current - 1].not_visited) {
         copy_from_too('./.hidden/modules/' + get_current_folder() + '/index.html', './.hidden/modules/' + get_current_folder() + '/save.html');
-        current_config.is_first = false;
         options.modules[options.current - 1].not_visited = false;
         render_home();
     }
 
     copy_from_too('./.hidden/modules/' + get_current_folder() + '/save.html', './index.html');
-    writeJson('./.hidden/modules/' + get_current_folder() + '/template.json', current_config, function () {});
-    writeJson('./.hidden/config.json', options, function () {});
+    writeJson('./.hidden/config.json', options);
 }
 
 function special_requests(app) {
@@ -81,6 +93,7 @@ function special_requests(app) {
     app.use(express.json());
     app.use(express.urlencoded({ extended: false }));
 
+    //GET
     app.get('/on-load', function(req, res) {
         var current_config = get_current_json();
 
@@ -108,20 +121,22 @@ function special_requests(app) {
             render_home();
         }
 
-        writeJson('./.hidden/config.json', options, function () {});
+        writeJson('./.hidden/config.json', options);
 
         //To fix an issue where navigating to root on first doesn't load
-        if (current_config.is_first) {
+        if (options.modules[options.current - 1].not_visited) {
             get_mod();
         }
     });
 
+    //GET
     app.get('/home', function (req, res) {
         console.log("Going home".dim);
 
         res.send(home);
     });
 
+    //GET
     app.get('/next', function(req, res) {
         //loops all modules
         options.current = (options.current + 1) % (options.modules.length + 1);
@@ -131,9 +146,10 @@ function special_requests(app) {
 
         get_mod();
 
-        writeJson('./.hidden/config.json', options, function () {});
+        writeJson('./.hidden/config.json', options);
     });
 
+    //GET
     app.get('/back', function (req, res) {
         options.current = options.current - 1;
         if (options.current === 0) {
@@ -142,14 +158,16 @@ function special_requests(app) {
 
         get_mod();
 
-        writeJson.sync('./.hidden/config.json', options, function () {});
+        writeJson('./.hidden/config.json', options);
     });
 
+    //GET
     app.get('/wipe', function (req, res) {
         copy_from_too( './.hidden/modules/' + get_current_folder() + '/index.html' , './.hidden/modules/' + get_current_folder() + '/save.html');
         copy_from_too('./.hidden/modules/' + get_current_folder() + '/save.html', './index.html');
     });
 
+    //POST
     app.post('/open', function (req, res) {
         if (req.body.index) {
             options.current = parseInt(req.body.index, 10);
@@ -158,14 +176,15 @@ function special_requests(app) {
         get_mod();
         res.end('yes');
 
-        writeJson('./.hidden/config.json', options, function () {});
+        writeJson('./.hidden/config.json', options);
     });
 
     //can't handle a lot of requests for some reason, but first always gets through
+    //GET
     app.get('/toggle_ui', function (req, res) {
         options.ui_open = !options.ui_open;
         //has to send back to close out request or else will light crash
-        res.send("ok");
+        res.send("UI toggle saved");
     });
 }
 

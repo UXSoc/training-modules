@@ -20,10 +20,6 @@ program
     .option('-r, --reset', 'sets the config file back to default')
     .parse(process.argv);
 
-function get_a_json(folder_name) {
-    return require('../modules/' + folder_name + '/template.json');
-}
-
 // flag_name: string - name printed on error
 // output: var - the output of the commander ie program.new
 // when_full: function - called when a parameter is succesfully passed to the program through this command
@@ -178,11 +174,7 @@ if_flag("reset", program.reset, function () {
     options.ui_open = true;
 
     options.modules.forEach(function (mod) {
-        var current_config = get_a_json(mod.folder);
-        current_config.is_first = true;
-
         mod.not_visited = true;
-        writeJson('./.hidden/modules/' + mod.folder + '/template.json', current_config, function () {});
 
         fsex.copySync(path.resolve('./.hidden/modules/save.html'), './.hidden/modules/' + mod.folder+ '/save.html');
     });
