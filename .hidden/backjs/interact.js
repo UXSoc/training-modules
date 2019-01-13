@@ -70,7 +70,7 @@ function copy_from_too(source, destination) {
 
 function writeJson(file, object) {
     try {
-        fsex.writeJsonSync(file, object);
+        fsex.writeJsonSync(file, object, {spaces: '\t'});
     } catch (err) {
         console.error("Error: ".red.bold + "could not write object " + object.bold + " to destination " + file.bold);
     }
