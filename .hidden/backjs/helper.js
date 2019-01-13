@@ -19,6 +19,14 @@ program
     .option('-r, --reset', 'sets the config file back to default')
     .parse(process.argv);
 
+//Check if helper is ran without flags,
+//the first two args are always node and helper.js file locations
+//so length should be 2, not 0 by default when nothing is passed
+if (process.argv.length === 2) {
+  console.log("Error: ".red + "No flags passed, please run again with an option.");
+  console.log("To discover the right flag to use, run " + "`npm run tm -- --help`".bold);
+}
+
 // flag_name: string - name printed on error
 // output: var - the output of the commander ie program.new
 // when_full: function - called when a parameter is succesfully passed to the program through this command
@@ -28,7 +36,7 @@ function if_flag_then(flag_name, output, when_full) {
     if (typeof output === "boolean") {
       console.log("Error:".red.bold + " no value included for command: " + flag_name.bold);
       console.log("Run this command again with a value passed through the command line: ".dim);
-      console.log("Try " + "`yarn tm --help`".bold + " to find the right argument type.");
+      console.log("Try " + "`npm run tm -- --help`".bold + " to find the right argument type.");
     } else {
       when_full(output);
     }

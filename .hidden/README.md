@@ -7,11 +7,17 @@ This directory contains all the files needed to make everything happen behind th
 - Helping scripts
 
 ## Commands
+Training mods has a command line utility to help with managing commands which can be run with  `npm run tm -- [args]`. Here is an overview of the options.
 
-- `npm run new [folder name]` create a new module which will be available in */.hidden/modules/[folder name]*. After creating and/or editing the module's index.html you can run 'Wipe' from the browser UI to see it.
-- `npm run delete [module number]` delete a module, this is by number
--  `npm run mods` print out all modules
-- `npm run reset` resets the config file which is useful for testing
+- `npm run tm -- --new [folder name]` create a new module which will be available in */.hidden/modules/[folder name]*. After creating and/or editing the module's index.html you can run 'Wipe' from the browser UI to see it.
+- `npm run tm -- --delete [module number]` delete a module, this is by number
+- `npm run tm -- --mods` print out all modules
+- `npm run tm -- --reset` resets the config file which is useful for testing
+- `npm run tm -- --help` gets the full info about the tm utility.
+
+Yarn is also supported, just run `yarn tm [args]` to access the utility.
+
+###Additional commands:
 - `npm run publish [message]` will reset the project and commit for you with the message supplied. Then just run `git push`
 
 ## Important
