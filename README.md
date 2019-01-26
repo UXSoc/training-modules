@@ -1,10 +1,10 @@
 # UXSoc Training Modules
 
 1. Install [node](https://nodejs.org/en/)
-1. Run `npm i`
+1. Run `npm i` in the base folder of this project.
 1. Open *index.html*  preferably in Webstorm and then run `npm start`. The homepage will automatically open.
 
-You can now access various modules and the're html will appear in index.html!
+You can now access various modules and the html will appear in index.html!
 
 After editing the *index.html* file the webpage opened will automatically reload.
 
