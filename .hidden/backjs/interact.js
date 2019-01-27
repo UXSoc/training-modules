@@ -191,7 +191,8 @@ function special_requests(app) {
 
 module.exports = {
     run: function(app) {
-        console.log("Starting Front End UI".bold + " Version: ".dim);
+        console.log("Starting Front End UI in Browser".bold);
+        console.log("Check that a web browser is open, and that a default browser is selected".dim);
 
         render_home();
         special_requests(app);
