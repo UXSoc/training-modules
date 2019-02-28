@@ -184,13 +184,15 @@ function special_requests(app) {
     app.get('/toggle_ui', function (req, res) {
         options.ui_open = !options.ui_open;
         //has to send back to close out request or else will light crash
+        writeJson('./.hidden/config.json', options);
         res.send("UI toggle saved");
     });
 }
 
 module.exports = {
     run: function(app) {
-        console.log("Starting Front End UI".bold + " Version: ".dim);
+        console.log("Starting Front End UI in Browser".bold);
+        console.log("Check that a web browser is open, and that a default browser is selected".dim);
 
         render_home();
         special_requests(app);
