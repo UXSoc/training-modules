@@ -8,8 +8,14 @@ You can now access various modules and the're html will appear in index.html!
 
 After editing the *index.html* file the webpage opened will automatically reload.
 
-## Tips 
+## Backing up to GitHub
+First make sure this project was forked and not just cloned, in order to take advantage of backup features. Next:
 
+1. Run the command `npm run backup`
+2. Git commit either in your IDE or with `git commit -m "message"`
+3. `git push`
+
+## Tips 
 - The index.html file will save automatically for each module so you can always go back!
 - Whenever the webpage updates, the UI bar will be a different color and the emoji will change.
 - Additional html is injected to load the UI in the webpage, but don't worry it shouldn't affect your html.
@@ -20,7 +26,6 @@ After editing the *index.html* file the webpage opened will automatically reload
 #### Want to make a module? Check out *.hidden*
 
 ### About
-Made with :heart: and :sweat: by Jonathan Burns of User Experience Society
+Please star this in the upper right so we can gauge interest. ⤴️
 
-# Save
-After editing modules, run `npm run backup`, then commit and push either from Webstorm or the terminal.
+Made with :heart: and :sweat: by Jonathan Burns of User Experience Society
